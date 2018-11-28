@@ -114,7 +114,7 @@ Gremlin控制台使用[Apache Groovy](http://www.groovy-lang.org/)解释命令�
 
 图索引是JanusGraph中的一种索引结构。JanusGraph自动选择图形索引，以回答要求满足一个或多个约束（例如有或间隔）的所有顶点（g.V）或所有边（g.E）的问题。anusGraph中索引的第二个方面被称为顶点中心索引。顶点中心指数用于加速图中的遍历。稍后将描述顶点中心指数。
 
-#### 3.3.1图遍历实例
+#### 3.3.1 图遍历实例
 > Hercules，Jupiter和Alcmene的儿子，“蕴藏着超人的力量”。Hercules是个Demigod(半神)，因为他的父亲是God，他的母亲是人类。Juno，Jupiter的妻子，对Jupiter的不忠感到愤怒。为了报仇，她用暂时的精神错乱蒙蔽了Hercules，并导致他杀死他的妻子和孩子。为了赎罪， Oracle of Delphi的神谕命令Hercules为Eurystheus服务。Eurystheus指派给Hercules为12名劳工。
 
 在上一节中，它证明了Saturn的孙子是Hercules。这可以用一个循环来表示。本质上，Hercules是沿着“父亲”路径离开Hercules2步的顶点。
@@ -125,36 +125,83 @@ Gremlin控制台使用[Apache Groovy](http://www.groovy-lang.org/)解释命令�
 
 Hercules是demigod(半神半人)。为了证明Hercules是半人半神，他父母的起源必须加以考证。有可能从Hercules顶点到他的父母。最后，可以确定它们分别产生“神”和“人”的类型。
 
-	gremlin> g.V(hercules).out('father', 'mother')
-	==>v[1024]
-	==>v[1792]
-	gremlin> g.V(hercules).out('father', 'mother').values('name')
-	==>jupiter
-	==>alcmene
-	gremlin> g.V(hercules).out('father', 'mother').label()
-	==>god
-	==>human
-	gremlin> hercules.label()
-	==>demigod
+	 gremlin> g.V(hercules).out('father', 'mother')
+	 ==>v[1024]
+	 ==>v[1792]
+	 gremlin> g.V(hercules).out('father', 'mother').values('name')
+	 ==>jupiter
+	 ==>alcmene
+	 gremlin> g.V(hercules).out('father', 'mother').label()
+	 ==>god
+	 ==>human
+	 gremlin> hercules.label()
+	 ==>demigod
 
 迄今为止的例子是关于罗马万神殿中各种角色的基因谱系。[属性图模型](http://tinkerpop.apache.org/docs/3.3.3/reference#intro)具有足够的表达能力，可以表示多种类型的事物和关系。通过这种方式，《神图》还确定了Hercules的各种英勇事迹——他著名的12项劳动。在上一节中，人们发现Hercules参与了雅典附近的两场战役。通过穿越Hercules顶点之外的战斗边缘，有可能探索这些事件。
 
-  gremlin> g.V(hercules).out('battled')
-  ==>v[2304]
-  ==>v[2560]
-  ==>v[2816]
-  gremlin> g.V(hercules).out('battled').valueMap()
-  ==>[name:[nemean]]
-  ==>[name:[hydra]]
-  ==>[name:[cerberus]]
-  gremlin> g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name')
-  ==>cerberus
-  ==>hydra
+
+    gremlin> g.V(hercules).out('battled')
+    ==>v[2304]
+    ==>v[2560]
+    ==>v[2816]
+    gremlin> g.V(hercules).out('battled').valueMap()
+    ==>[name:[nemean]]
+    ==>[name:[hydra]]
+    ==>[name:[cerberus]]
+    gremlin> g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name')
+    ==>cerberus
+    ==>hydra
 
 战斗边的属性time由一个顶点的vertex-centric指数索引。根据约束/滤波器按时检索入射到Hercules的战斗边缘比进行所有边缘的线性扫描和滤波(通常为O(log n)，其中n是入射边的数目)要快。JanusGraph足够智能，可以在使用时使用顶点中心索引。Gremlin表达式的toString()显示分解为各个步骤。
 
-  gremlin> g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name').toString()
-  ==>[GraphStep([v[24744]],vertex), VertexStep(OUT,[battled],edge), HasStep([time.gt(1)]), EdgeVertexStep
+    gremlin> g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name').toString()
+    ==>[GraphStep([v[24744]],vertex), VertexStep(OUT,[battled],edge), HasStep([time.gt(1)]), EdgeVertexStep
 
+#### 3.3.2 更复杂的图遍历示例
+
+冥府深处的冥王星。他与Hercules的关系因Hercules与他的宠物Cerberus搏斗而紧张。然而，Hercules是他的侄子，他应该如何让Hercules为他的傲慢付出代价？
+下面的Gremlin遍历在Gods的图上提供更多的例子。每个遍历的解释在先前行中提供为a//注释。
+
+##### 3.3.2.1 Tartarus的同居者
+
+    gremlin> pluto = g.V().has('name', 'pluto').next()
+    ==>v[2048]
+    gremlin> // who are pluto's cohabitants?
+    gremlin> g.V(pluto).out('lives').in('lives').values('name')
+    ==>pluto
+    ==>cerberus
+    gremlin> // pluto can't be his own cohabitant
+    gremlin> g.V(pluto).out('lives').in('lives').where(is(neq(pluto))).values('name')
+    ==>cerberus
+    gremlin> g.V(pluto).as('x').out('lives').in('lives').where(neq('x')).values('name')
+    ==>cerberus
+
+##### 3.3.2.2. Pluto’s 兄弟
+
+    gremlin> // where do pluto's brothers live?
+    gremlin> g.V(pluto).out('brother').out('lives').values('name')
+    ==>sky
+    ==>sea
+    gremlin> // which brother lives in which place?
+    gremlin> g.V(pluto).out('brother').as('god').out('lives').as('place').select('god', 'place')
+    ==>[god:v[1024], place:v[512]]
+    ==>[god:v[1280], place:v[768]]
+    gremlin> // what is the name of the brother and the name of the place?
+    gremlin> g.V(pluto).out('brother').as('god').out('lives').as('place').select('god', 'place').by('name')
+    ==>[god:jupiter, place:sky]
+    ==>[god:neptune, place:sea]
+
+
+
+最后，冥王星(pluto)生活在Tartarus，因为他不关心生死。另一方面，他的兄弟们基于对那些地方某些品质的爱来选择他们的位置
+
+    gremlin> g.V(pluto).outE('lives').values('reason')
+    ==>no fear of death
+    gremlin> g.E().has('reason', textContains('loves'))
+    ==>e[6xs-sg-m51-e8][1024-lives->512]
+    ==>e[70g-zk-m51-lc][1280-lives->768]
+    gremlin> g.E().has('reason', textContains('loves')).as('source').values('reason').as('reason').select('source').outV().values('name').as('god').select('source').inV().values('name').as('thing').select('god', 'reason', 'thing')
+    ==>[god:neptune, reason:loves waves, thing:sea]
+    ==>[god:jupiter, reason:loves fresh breezes, thing:sky]
 
 本节概述JanusGraph的架构和优点，然后使用小教程数据集快速浏览JanusGraph特性。
