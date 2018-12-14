@@ -1,6 +1,4 @@
-# Part I. 简介
-
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+# 简介
 
 ## 1. JanusGraph有点
 对对对
@@ -176,7 +174,7 @@ Hercules是demigod(半神半人)。为了证明Hercules是半人半神，他父�
     gremlin> g.V(pluto).as('x').out('lives').in('lives').where(neq('x')).values('name')
     ==>cerberus
 
-##### 3.3.2.2. Pluto’s 兄弟
+##### 3.3.2.2. Pluto的兄弟
 
     gremlin> // where do pluto's brothers live?
     gremlin> g.V(pluto).out('brother').out('lives').values('name')
