@@ -5,6 +5,7 @@
 # 2. 代码下载
  
   git clone https://github.com/jiangfeng/JanusGraph-Docs.git
+  
   cd JanusGraph-Docs
 
 # 3. 根据自己翻译的页面在mkdocs.yml添加菜单
