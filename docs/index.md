@@ -2,6 +2,7 @@
 <h3>华创证券金融科技团队荣誉出品 </h3>
 
 翻译：王江丰、陈海凤、刘云鹏、乔宇
+
 校对：杨兴、武熠阳
 
 JanusGraph is a scalable graph database optimized for storing and querying graphs containing hundreds of billions of vertices and edges distributed across a multi-machine cluster. JanusGraph is a transactional database that can support thousands of concurrent users executing complex graph traversals in real time.
