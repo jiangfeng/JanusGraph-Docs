@@ -1,1 +1,21 @@
-site_name: JanusGraph Documentation(0.3.1)
+site_name: JanusGraph 翻译版(0.3.1)
+site_author: FinSightRD
+
+
+nav:
+- Home: index.md
+- I.介绍: 
+  - 1.JanusGraph优势: ./introduction/the_benefits_of_janusgraph.md
+  - 2.架构总览: ./introduction/architectural_overview.md
+  - 3.开始: ./introduction/getting_started.md
+
+- II.Janusgraph基础知识:
+  - 4.基本配置: ./janusgraph_basics/configuration.md
+  - 5.数据实例和数据模型: ./janusgraph_basics/schema_and_data_modeling.md
+
+- III.存储后端: 
+  - 18.Apache Cassandra: ./storage_backend/apache_cassandra.md
+  - 19.Apache Hbase: ./storage_backend/apache_hbase.md
+
+
+theme: readthedocs

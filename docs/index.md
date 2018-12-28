@@ -1,63 +1,54 @@
-# JanusGraph官方文档(翻译版)
 
 <h3>华创证券金融科技团队荣誉出品 </h3>
 成员：@jiangfeng @haifeng @yunpeng
 
-## [I. 简介](introduction.md)
-### 1. JanusGraph 优势
-### 2. JanusGraph 架构总览
-### 3. 开始图数据库
-## [II. JanusGraph 基础配置](janusgraph-basics.md)
-### 4. 基础配置
-### 5. 实例和数据模型
-### 6. Gremlin查询语言
-### 7. JanusGraph 服务端
-### 8. 部署场景
-### 9. 配置多图工厂
-### 10. 考虑用多节点图集群
-### 11. 高性能索引
-### 12. 事物
-### 13. JanusGraph 缓存
-### 14. 事物日志
-### 15. 配置指南
-### 16. 常见问题
-### 17. 技术限制
-## [III. 后端存储](storage-backends.md)
-### 18. Apache Cassandra
-### 19. Apache HBase
-### 20. Google Cloud Bigtable
-### 21. Oracle Berkeley DB Java Edition
-### 22. 内存后端存储
-### IV. 后端索引
-### 23. 搜索谓词和数据类型
-### 24. 索引参数和全文搜索
-### 25. 字段映射
-### 26. 直接索引查询
-### 27. Elasticsearch
-### 28. Apache Solr
-### 29. Apache Lucene
-## [V. 高级特性](advanced-topics.md)
-### 30. Advanced Schema
-### 31. Eventually-Consistent Storage Backends
-### 32. Failure & Recovery
-### 33. Index Management
-### 34. Bulk Loading
-### 35. Graph Partitioning
-### 36. Datatype and Attribute Serializer Configuration
-### 37. JanusGraph with TinkerPop’s Hadoop-Gremlin
-### 38. Monitoring JanusGraph
-### 39. Migrating from Titan
-## [VI. JanusGraph 内部构造](janusgraph-internals.md)
-### 40. JanusGraph Data Model
-### 41. Building JanusGraph
-## [VII. JanusGraph 开发步骤](anusgraph-development-process.md)
-### 42. 开发决策
-### 43. 创建分支
-### 44. 拉取代码
-### 45. 发布规则
-## [VIII. 附录](appendices.md)
-### A. API Documentation (JavaDoc)
-### B. Version Compatibility
-### C. Release Notes
-### D. Upgrade Instructions
-### E. Other documentation versions
+JanusGraph is a scalable graph database optimized for storing and querying graphs containing hundreds of billions of vertices and edges distributed across a multi-machine cluster. JanusGraph is a transactional database that can support thousands of concurrent users executing complex graph traversals in real time.
+
+In addition, JanusGraph provides the following features:
+
+Elastic and linear scalability for a growing data and user base.
+Data distribution and replication for performance and fault tolerance.
+Multi-datacenter high availability and hot backups.
+Support for ACID and eventual consistency.
+Support for various storage backends:
+Apache Cassandra®
+Apache HBase®
+Google Cloud Bigtable
+Oracle BerkeleyDB
+Support for global graph data analytics, reporting, and ETL through integration with big data platforms:
+Apache Spark™
+Apache Giraph™
+Apache Hadoop®
+Support for geo, numeric range, and full-text search via:
+ElasticSearch™
+Apache Solr™
+Apache Lucene®
+Native integration with the Apache TinkerPop™ graph stack:
+Gremlin graph query language
+Gremlin graph server
+Gremlin applications
+Open source under the Apache 2 license.
+You can visualize graphs stored in JanusGraph via any of the following tools:
+Cytoscape
+Gephi plugin for Apache TinkerPop
+Graphexp
+KeyLines by Cambridge Intelligence
+Linkurious
+You can download JanusGraph or clone from GitHub.
+
+Read the JanusGraph documentation and join the users or developers mailing lists.
+
+Follow the Getting Started with JanusGraph guide for a step-by-step introduction.
+
+About
+JanusGraph is a project under The Linux Foundation, and includes participants from Expero, Google, GRAKN.AI, Hortonworks, IBM and Amazon.
+
+Presentations
+Here is a selection of JanusGraph presentations:
+
+DataWorksJun2017: Large Scale Graph Analytics with JanusGraph, P. Taylor Goetz, 2017.06.13
+
+HBaseCon2017 Community-Driven Graphs with JanusGraph, Jing Chen He & Jason Plurad, 2017.06.12
+
+Users
+The following users have deployed JanusGraph in production.

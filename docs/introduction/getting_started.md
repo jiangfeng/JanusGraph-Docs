@@ -1,30 +1,10 @@
-# 简介
-
-## 1. JanusGraph有点
-对对对
-
-### 1.1. JanusGraph的主要优点
-对对对
-### 1.2. 用Apache Cassandra作为JanusGraph的优点
-对对对
-### 1.3. 用Hbase作为JanusGraph的优点
-对对对
-### 1.4. JanusGraph和CAP定理
-对对对
-## 2. 架构概览
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
-
-## 3. 快速开始
+# 3. 快速开始
 
 图3.1 神的图关系
-![graph-of-the-gods-2](./img/graph-of-the-gods-2.png)
+![graph-of-the-gods-2](../img/graph-of-the-gods-2.png)
 *Above: Cupcake indexer in progress*
 
-### 3.1. 下载JanusGraph和运行Gremlin控制台
+## 3.1. 下载JanusGraph和运行Gremlin控制台
 JanusGraph可以从项目仓库中下载一个发布的<a href="https://github.com/JanusGraph/janusgraph/releases" target="_blank">版本</a> 一旦下载并解压，一个Gremlin的控制台就可以打开。Gremlin控制台是与JanusGraph一起分发的[REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)（即交互式shell），并且仅与标准Gremlin控制台不同，因为JanusGraph是预先安装和预加载的包。或者，用户可以通过从中央存储库下载JanusGraph包来选择在现有的Gremlin控制台中安装和激活JanusGraph。但是，在下面的示例中，使用了 janusgraph.zip，请确保解压缩了下载的zip文件。
 
 >*重要: JanusGraph依赖Java8（标准版）。建议使用Oracle Java 8。JanusGraph的shell脚本希望$JAVA_HOME环境变量指向安装JRE或JDK的目录。*
@@ -60,7 +40,7 @@ Gremlin控制台使用[Apache Groovy](http://www.groovy-lang.org/)解释命令�
 
 > 关于[Apache Tinkerpop](http://tinkerpop.apache.org/docs/3.3.3/reference),[SQLEGremlin](http://sql2gremlin.com/)和[Gremlin Recipes](http://tinkerpop.apache.org/docs/3.3.3/recipes/)的更多Gremlin的使用信息。
 
-### 3.2. 将Gods的图关系导入到JanusGraph
+## 3.2. 将Gods的图关系导入到JanusGraph
 
 下面的示例将打开一个JanusGraph图形实例，并加载上面所示的Gods数据集的图。JanusGraphFactory提供了一组静态打开方法，每个方法都采用配置作为参数，并返回一个图形实例。本教程在使用BerkeleyDB存储后端和Elasticsearch索引后端的配置上调用这些开放方法，然后使用帮助类GraphOfTheGodsFactory加载Gods的图。本节跳过配置细节，但是关于存储后端、索引后端及其配置的附加信息可在Part III,“存储后端”、Part IV“索引后端”和第15章“配置参考”中获得。
 
@@ -89,7 +69,7 @@ Gremlin控制台使用[Apache Groovy](http://www.groovy-lang.org/)解释命令�
 	gremlin> g = graph.traversal()
 	==>graphtraversalsource[standardjanusgraph[cql:[127.0.0.1]], standard]
 
-### 3.3. 全局图索引
+## 3.3. 全局图索引
 访问图形数据库中数据的典型模式是首先使用图形索引定位到图形中的入口点。该入口点是元素（或一组元素）-即顶点或边。从条目元素中，Gremlin路径描述描述了如何通过显式图结构遍历到图中的其他元素。
 
 给定name属性上有一个唯一的索引，可以检索Saturn顶点。然后可以检查属性映射（即Saturn的密钥/值对）。正如所展示的，土星顶点的名字是“Saturn”，年龄为10000岁，是一种“titan”。Saturn的孙子可以通过一个遍历表述：“谁是Saturn的孙子？”“父亲”的倒数是“孩子”。结果就是Hercules。
@@ -112,7 +92,7 @@ Gremlin控制台使用[Apache Groovy](http://www.groovy-lang.org/)解释命令�
 
 图索引是JanusGraph中的一种索引结构。JanusGraph自动选择图形索引，以回答要求满足一个或多个约束（例如有或间隔）的所有顶点（g.V）或所有边（g.E）的问题。anusGraph中索引的第二个方面被称为顶点中心索引。顶点中心指数用于加速图中的遍历。稍后将描述顶点中心指数。
 
-#### 3.3.1 图遍历实例
+### 3.3.1 图遍历实例
 > Hercules，Jupiter和Alcmene的儿子，“蕴藏着超人的力量”。Hercules是个Demigod(半神)，因为他的父亲是God，他的母亲是人类。Juno，Jupiter的妻子，对Jupiter的不忠感到愤怒。为了报仇，她用暂时的精神错乱蒙蔽了Hercules，并导致他杀死他的妻子和孩子。为了赎罪， Oracle of Delphi的神谕命令Hercules为Eurystheus服务。Eurystheus指派给Hercules为12名劳工。
 
 在上一节中，它证明了Saturn的孙子是Hercules。这可以用一个循环来表示。本质上，Hercules是沿着“父亲”路径离开Hercules2步的顶点。
@@ -155,12 +135,12 @@ Hercules是demigod(半神半人)。为了证明Hercules是半人半神，他父�
     gremlin> g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name').toString()
     ==>[GraphStep([v[24744]],vertex), VertexStep(OUT,[battled],edge), HasStep([time.gt(1)]), EdgeVertexStep
 
-#### 3.3.2 更复杂的图遍历示例
+### 3.3.2 更复杂的图遍历示例
 
 冥府深处的冥王星。他与Hercules的关系因Hercules与他的宠物Cerberus搏斗而紧张。然而，Hercules是他的侄子，他应该如何让Hercules为他的傲慢付出代价？
 下面的Gremlin遍历在Gods的图上提供更多的例子。每个遍历的解释在先前行中提供为a//注释。
 
-##### 3.3.2.1 Tartarus的同居者
+#### 3.3.2.1 Tartarus的同居者
 
     gremlin> pluto = g.V().has('name', 'pluto').next()
     ==>v[2048]
@@ -174,7 +154,7 @@ Hercules是demigod(半神半人)。为了证明Hercules是半人半神，他父�
     gremlin> g.V(pluto).as('x').out('lives').in('lives').where(neq('x')).values('name')
     ==>cerberus
 
-##### 3.3.2.2. Pluto的兄弟
+#### 3.3.2.2. Pluto的兄弟
 
     gremlin> // where do pluto's brothers live?
     gremlin> g.V(pluto).out('brother').out('lives').values('name')
