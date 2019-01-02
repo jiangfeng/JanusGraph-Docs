@@ -8,7 +8,7 @@
   
   <meta name="author" content="FinSightRD">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>**第40章JanusGraph数据模型** - JanusGraph 翻译版(0.3.1)</title>
+  <title>41.构建JanusGraph - JanusGraph 翻译版(0.3.1)</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "**\u7b2c40\u7ae0JanusGraph\u6570\u636e\u6a21\u578b**";
+    var mkdocs_page_name = "41.\u6784\u5efaJanusGraph";
     var mkdocs_page_input_path = "storage_backend/janusgraph_data_model.md";
     var mkdocs_page_url = null;
   </script>
@@ -55,7 +55,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">I.介绍</span>
+    <span class="caption-text">I. 介绍</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -74,7 +74,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">II.Janusgraph基础知识</span>
+    <span class="caption-text">II. Janusgraph基础知识</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -137,7 +137,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">III.存储后端</span>
+    <span class="caption-text">III. 存储后端</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -146,6 +146,18 @@
                 <li class="">
                     
     <a class="" href="../apache_hbase/">19.Apache Hbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../inmemory_storage_backend/">22.内存存储后端</a>
                 </li>
     </ul>
 	    </li>
@@ -232,6 +244,37 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">41.构建JanusGraph</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#40janusgraph">第40章JanusGraph数据模型</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#401-bigtable">40.1. Bigtable数据模型</a></li>
+        
+            <li><a class="toctree-l4" href="#402-janusgraph">40.2. JanusGraph数据布局</a></li>
+        
+            <li><a class="toctree-l4" href="#403">40.3. 个别边缘布局</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -253,8 +296,12 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
+        
+          <li>VI. JanusGraph内核 &raquo;</li>
+        
+      
     
-    <li>**第40章JanusGraph数据模型**</li>
+    <li>41.构建JanusGraph</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -269,16 +316,16 @@
 <p>通过以邻接列表格式存储图形，JanusGraph确保所有顶点的入射边缘和属性紧密地存储在存储后端中，从而加速遍历。缺点是每个边缘必须存储两次 - 边缘的每个末端顶点一次。</p>
 <p>此外，JanusGraph按排序顺序维护每个顶点的邻接列表，其顺序由排序键和边标签的排序顺序定义。排序顺序允许使用以<a href="https://docs.janusgraph.org/latest/indexes.html#vertex-indexes">顶点为中心的索引</a>有效地检索邻接列表的子集。</p>
 <p>JanusGraph将图形的邻接列表表示<a href="https://docs.janusgraph.org/latest/storage-backends.html">存储</a>在支持Bigtable数据模型的任何<a href="https://docs.janusgraph.org/latest/storage-backends.html">存储后端</a>中</p>
-<h2 id="401bigtable">40.1。Bigtable数据模型</h2>
+<h2 id="401-bigtable">40.1. Bigtable数据模型</h2>
 <p><img alt="bigtablemodel" src="https://docs.janusgraph.org/latest/images/bigtablemodel.png" /></p>
 <p>在<a href="http://en.wikipedia.org/wiki/Bigtable">Bigtable数据模型下，</a>每个表都是行的集合。每行由密钥唯一标识。每行由任意（大但有限）数量的单元组成。单元格由列和值组成。单元格由给定行内的列唯一标识。Bigtable模型中的行称为“宽行”，因为它们支持大量单元格，并且不必像关系数据库中那样预先定义这些单元格的列。</p>
 <p>JanusGraph对Bigtable数据模型还有一个额外要求：单元格必须按列排序，并且列范围指定的单元格子集必须是有效可检索的（例如，通过使用索引结构，跳过列表或二进制搜索）。</p>
 <p>此外，特定的Bigtable实现可以使行按其键的顺序排序。JanusGraph可以利用这样的键序来有效地划分图形，从而为非常大的图形提供更好的加载和遍历性能。但是，这不是必需的。</p>
-<h2 id="402janusgraph">40.2。JanusGraph数据布局</h2>
+<h2 id="402-janusgraph">40.2. JanusGraph数据布局</h2>
 <p><img alt="storagelayout" src="https://docs.janusgraph.org/latest/images/storagelayout.png" /></p>
 <p>JanusGraph将每个邻接列表作为一行存储在底层存储后端中。（64位）顶点id（JanusGraph唯一分配给每个顶点）是指向包含顶点邻接列表的行的键。每个边和属性都存储在行中的单个单元格中，从而允许有效的插入和删除。因此，特定存储后端中每行允许的最大单元数也是JanusGraph可以支持此顶端的最大顶点数。</p>
 <p>如果存储后端支持键顺序，则邻接列表将按顶点id排序，并且JanusGraph可以分配顶点id，以便图形被有效地分区。分配ID使得经常共同访问的顶点具有小的绝对差异的id。</p>
-<h2 id="403">40.3。个别边缘布局</h2>
+<h2 id="403">40.3. 个别边缘布局</h2>
 <p><img alt="relationlayout" src="https://docs.janusgraph.org/latest/images/relationlayout.png" /></p>
 <p>每个边和属性都作为一个单元格存储在其相邻顶点的行中。它们被序列化，使得列的字节顺序遵循边标签的排序键。变量id编码方案和压缩对象序列化用于使每个边缘/单元的存储足迹尽可能小。</p>
 <p>考虑在上图中顶行可视化的单个边的存储布局。深蓝色框表示使用可变长度编码方案编码的数字，以减少它们消耗的字节数。红框表示使用关联属性键中引用的压缩元数据序列化的一个或多个属性值（即对象）。灰色框表示未压缩的属性值（即序列化对象）。</p>
@@ -288,6 +335,13 @@
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../building_janusgraph/" class="btn btn-neutral" title="40.JanusGraph数据模型"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -310,6 +364,8 @@
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
+      
+        <span><a href="../building_janusgraph/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>

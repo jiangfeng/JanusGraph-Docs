@@ -55,7 +55,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">I.介绍</span>
+    <span class="caption-text">I. 介绍</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -74,7 +74,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">II.Janusgraph基础知识</span>
+    <span class="caption-text">II. Janusgraph基础知识</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -137,7 +137,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">III.存储后端</span>
+    <span class="caption-text">III. 存储后端</span>
     <ul class="subnav">
                 <li class=" current">
                     
@@ -149,6 +149,18 @@
                 <li class="">
                     
     <a class="" href="../apache_hbase/">19.Apache Hbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../inmemory_storage_backend/">22.内存存储后端</a>
                 </li>
     </ul>
 	    </li>
@@ -235,6 +247,21 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -257,7 +284,7 @@
     
       
         
-          <li>III.存储后端 &raquo;</li>
+          <li>III. 存储后端 &raquo;</li>
         
       
     
@@ -284,7 +311,7 @@
 <p>Cassandra有两个供客户使用的协议：CQL和Thrift。Thrift是最初的界面，但是从Cassandra 2.1开始就被弃用了。JanusGraph的核心最初是在Thrift弃用之前编写的，它有几个支持Thrift的类。使用Cassandra 4.0，将在Cassandra中删除Thrift支持。建议JanusGraph用户使用cql存储后端。</p>
 <p>注意：如果您计划使用基于Thrift的驱动程序并且使用的是Cassandra 2.2或更高版本，则需要显式启用Thrift，以便JanusGraph可以连接到群集。通过./bin/nodetool enablethrift在每个Cassandra节点上运行来完成此操作。</p>
 <p>注意：如果在Cassandra上启用了安全性，则用户必须具有CREATE permission on <all keyspaces>，否则必须由管理员提前创建密钥空间，包括所需的表或用户必须具有的密钥空间CREATE permission on <the configured keyspace>。包含所需表的create table文件位于conf/cassandra/cassandraTables.cql。请在执行之前定义键空间。</p>
-<p><strong>18.2。本地服务器模式</strong></p>
+<p><strong>18.2. 本地服务器模式</strong></p>
 <p>Cassandra可以作为JanusGraph和最终用户应用程序在同一本地主机上的独立数据库运行。在这个模型中，JanusGraph和Cassandra通过localhost套接字相互通信。在Cassandra上运行JanusGraph需要以下设置步骤：</p>
 <p>​   1.下载Cassandra，解压缩，并在conf/cassandra.yaml和中设置文件系统路径conf/log4j-server.properties</p>
 <p>​   2.使用预打包发行版中提供的默认配置文件将Gremlin Server连接到Cassandra需要启用Cassandra Thrift。启用Cassandra Thrift打开conf/cassandra.yaml并更新start_rpc: false到start_rpc: true。如果Cassandra已经运行，可以手动启动Thrift bin/nodetool enablethrift。可以通过bin/nodetoolstatusthrift 验证Thrift状态。</p>
@@ -377,9 +404,9 @@ scriptEngines：{
 <p>​   •SSH到任何Cassandra实例节点： ssh -i [your-private-key].pem ubuntu@[public-dns-name-of-any-cassandra-instance]</p>
 <p>​   •运行Cassandra nodetool nodetool -h 127.0.0.1 ring以检查Cassandra令牌环的状态。您应该在此命令的输出中看到与前面步骤中启动的实例一样多的节点。</p>
 <p>​   请注意，AMI需要几分钟来配置每个实例。当您通过SSH连接到实例时，将在成功配置时显示shell提示符。</p>
-<p><strong>18.9.5。启动JanusGraph实例</strong>
+<p><strong>18.9.5. 启动JanusGraph实例</strong>
 ​   启动其他EC2实例以运行JanusGraph，它们在远程服务器模式或远程服务器模式下配置为Gremlin-Server，如上所述。您只需记下其中一个Cassandra集群实例的IP地址，并将其配置为主机名。要运行的特定EC2实例和特定配置取决于您的用例。</p>
-<p><strong>18.9.6。Amazon Linux AMI上的JanusGraph实例示例</strong></p>
+<p><strong>18.9.6. Amazon Linux AMI上的JanusGraph实例示例</strong></p>
 <p>​   •在Cassandra集群的同一区域中启动Amazon Linux AMI。根据所需的资源量选择所需的EC2实例类型。使用默认配置选项，并选择与上一步中配置的Cassandra群集相同的密钥对和安全组。</p>
 <p>​   •通过SSH进入新创建的实例ssh -i [your-private-key].pem ec2-user@[public-dns-name-of-the-instance]。您可能需要等待一些实例才能启动。</p>
 <p>​   •下载当前的JanusGraph发行版，wget并将本地存档解压缩到主目录。启动Gremlin控制台以验证JanusGraph是否成功运行。有关如何解压缩JanusGraph并启动Gremlin控制台的更多信息，请参阅“ 入门指南”</p>
@@ -391,7 +418,7 @@ storage.hostname = [IP-address-of-one-Cassandra-EC2-instance]</code></p>
 <p><code>gremlin&gt; graph = JanusGraphFactory.open（'janusgraph.properties'）
 ==&gt; janusgraph [CQL：[IP-address-of-one-Cassandra-EC2-instance]</code></p>
 <p>您已成功将此JanusGraph实例连接到Cassandra集群，并且可以开始在图表上运行。</p>
-<p><strong>18.9.7。从EC2外部连接到EC2中的Cassandra集群</strong></p>
+<p><strong>18.9.7. 从EC2外部连接到EC2中的Cassandra集群</strong></p>
 <p>在安全组中打开通常的Cassandra端口（9160,7000,7199）是不够的，因为Cassandra节点默认广播他们的ec2内部IP，而不是他们面向公众的IP。</p>
 <p>由此产生的行为是，您可以通过连接到任何Cassandra节点上的端口9160在群集上打开JanusGraph图，但是对该图的所有请求都会超时。这是因为Cassandra告诉客户端连接到无法访问的IP。</p>
 <p>要解决此问题，请将/etc/cassandra/cassandra.yaml中每个实例的“broadcast-address”属性设置为面向公众的IP，然后重新启动实例。对集群中的所有节点执行此操作。群集返回后，nodetool会报告允许来自本地计算机的连接的正确的面向公众的IP。</p>

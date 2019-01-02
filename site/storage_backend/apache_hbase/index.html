@@ -55,7 +55,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">I.介绍</span>
+    <span class="caption-text">I. 介绍</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -74,7 +74,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">II.Janusgraph基础知识</span>
+    <span class="caption-text">II. Janusgraph基础知识</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -137,7 +137,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">III.存储后端</span>
+    <span class="caption-text">III. 存储后端</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -152,7 +152,7 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#191hbase">19.1。HBase设置</a></li>
+            <li><a class="toctree-l4" href="#191-hbase">19.1. HBase设置</a></li>
         
             <li><a class="toctree-l4" href="#192hbase">19.2。HBase特定配置</a></li>
         
@@ -164,6 +164,18 @@
     
 
     </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../inmemory_storage_backend/">22.内存存储后端</a>
                 </li>
     </ul>
 	    </li>
@@ -250,6 +262,21 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -272,7 +299,7 @@
     
       
         
-          <li>III.存储后端 &raquo;</li>
+          <li>III. 存储后端 &raquo;</li>
         
       
     
@@ -289,9 +316,9 @@
                 <h1 id="19apache-hbase"><strong>第19章Apache HBase</strong></h1>
 <p><img alt="hbase_logo" src="http://hbase.apache.org/images/hbase_logo.png" /></p>
 <p>Apache hbase是一个开源的、分布式的、版本化的、非关系数据库。正如BigTable利用Google文件系统提供的分布式数据存储一样，ApacheHBASE在Hadoop和HDFS之上提供了类似BigTable的功能。</p>
-<h2 id="191hbase">19.1。HBase设置</h2>
+<h2 id="191-hbase">19.1. HBase设置</h2>
 <p>以下部分概述了JanusGraph与Apache HBase协同使用的各种方式。</p>
-<h3 id="1911">19.1.1。本地服务器模式</h3>
+<h3 id="1911">19.1.1. 本地服务器模式</h3>
 <p><img alt="modes-local" src="https://docs.janusgraph.org/latest/images/modes-local.png" /></p>
 <p>HBase可以作为独立数据库在与JanusGraph和最终用户应用程序相同的本地主机上运行。在这个模型中，JanusGraph和HBase通过<code>localhost</code>套接字相互通信。在HBase上运行JanusGraph需要以下设置步骤：</p>
 <p>·         从<a href="http://www.apache.org/dyn/closer.cgi/hbase/stable/">http://www.apache.org/dyn/closer.cgi/hbase/stable/</a>下载并提取稳定的HBase 。</p>
@@ -394,7 +421,7 @@ sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh start master
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../index_backends/search_predicates_and_data_types/" class="btn btn-neutral float-right" title="23.查询语法和数据类型">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../goole_cloud_bigtable/" class="btn btn-neutral float-right" title="20.Google Cloud Bigtable">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../apache_cassandra/" class="btn btn-neutral" title="18.Apache Cassandra"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -426,7 +453,7 @@ sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh start master
         <span><a href="../apache_cassandra/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../index_backends/search_predicates_and_data_types/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../goole_cloud_bigtable/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
