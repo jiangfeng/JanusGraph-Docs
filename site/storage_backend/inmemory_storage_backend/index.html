@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>**第22章InMemory存储后端** - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "**\u7b2c22\u7ae0InMemory\u5b58\u50a8\u540e\u7aef**";
+    var mkdocs_page_input_path = "storage_backend/inmemory_storage_backend.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>**第22章InMemory存储后端**</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="22inmemory"><strong>第22章InMemory存储后端</strong></h1>
+<p>JanusGraph附带内存存储后端，可通过以下配置使用：</p>
+<pre><code>storage.backend = inmemory
+</code></pre>
+
+<p>或者，可以直接在Gremlin控制台中打开内存中的JanusGraph图：</p>
+<pre><code>graph = JanusGraphFactory.build().set('storage.backend', 'inmemory').open()
+</code></pre>
+
+<p>内存存储后端没有其他配置选项。顾名思义，这个后端将所有数据保存在内存中。关闭图形或终止承载JanusGraph图形的过程将不可撤销地删除图形中的所有数据。此后端是特定JanusGraph图形实例的本地后端，不能跨多个JanusGraph图表共享。</p>
+<h2 id="221">22.1。理想的用例</h2>
+<p>内存存储后端主要是为了简化测试（针对那些不需要持久性的测试）和图形探索而开发的。内存存储后端不适用于生产用途，大型图形或高性能用例。内存存储后端不是性能或内存优化。所有数据都存储在分配给Java虚拟机的堆空间中。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

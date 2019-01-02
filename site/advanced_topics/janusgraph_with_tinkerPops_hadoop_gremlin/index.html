@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "37.JanusGraph\u57fa\u4e8eTinkerPop's Hadoop-Gremlin\u4f7f\u7528";
+    var mkdocs_page_input_path = "advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#37-janusgraphtinkerpophadoop-gremlin">第37章 JanusGraph与TinkerPop的Hadoop-Gremlin</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#371-hadoopolap">37.1 配置Hadoop以运行OLAP</a></li>
+        
+            <li><a class="toctree-l4" href="#372-olap">37.2 OLAP遍历</a></li>
+        
+            <li><a class="toctree-l4" href="#3722-spark-standalone-clusterolap">37.2.2 使用Spark Standalone Cluster进行OLAP遍历</a></li>
+        
+            <li><a class="toctree-l4" href="#373">37.3 其他顶点程序</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>V. 高级特性 &raquo;</li>
+        
+      
+    
+    <li>37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="37-janusgraphtinkerpophadoop-gremlin">第37章 JanusGraph与TinkerPop的Hadoop-Gremlin</h2>
+<p>本章介绍如何利用Apache Hadoop和Apache Spark配置JanusGraph以进行分布式图形处理。这些步骤将概述如何开始这些项目，但请参考这些项目社区以更熟悉它们。</p>
+<p>JanusGraph-Hadoop与TinkerPop的hadoop-gremlin软件包一起用于通用OLAP。</p>
+<p>对于下面示例的范围，Apache Spark是计算框架，Apache Cassandra是存储后端。可以使用其他包来跟踪指示，只需对配置属性进行微小更改。</p>
+<blockquote>
+<p>注意:
+本章中的示例基于在本地模式或独立群集模式下运行Spark。在YARN或Mesos上使用Spark时需要进行其他配置。</p>
+</blockquote>
+<h3 id="371-hadoopolap">37.1 配置Hadoop以运行OLAP</h3>
+<p>要从Gremlin控制台运行OLAP查询，需要满足几个先决条件。您需要将Hadoop配置目录添加到类路径中，配置目录需要指向一个活动的Hadoop集群。</p>
+<p>Hadoop提供分布式访问控制的文件系统。运行在不同计算机上的Spark工作程序使用Hadoop文件系统来获得基于文件的操作的公共源。各种OLAP查询的中间计算可以保留在Hadoop文件系统上。</p>
+<p>有关配置单节点Hadoop集群的信息，请参阅官方Apache Hadoop文档。</p>
+<p>一旦启动并运行了Hadoop集群，我们就需要在CLASSPATH中指定Hadoop配置文件。下面的文档希望您的配置文件位于/etc/hadoop/conf下。</p>
+<p>验证后，按照以下步骤将Hadoop配置添加到CLASSPATH并启动Gremlin控制台，它将扮演Spark驱动程序的角色。</p>
+<pre><code>export HADOOP_CONF_DIR=/etc/hadoop/conf
+export CLASSPATH=$HADOOP_CONF_DIR
+bin/gremlin.sh
+</code></pre>
+
+<p>将Hadoop配置路径添加到类路径后，我们可以通过以下快速步骤验证Gremlin控制台是否可以访问Hadoop集群:</p>
+<pre><code>gremlin&gt; hdfs
+==&gt;storage[org.apache.hadoop.fs.LocalFileSystem@65bb9029] // BAD
+
+gremlin&gt; hdfs
+==&gt;storage[DFS[DFSClient[clientName=DFSClient_NONMAPREDUCE_1229457199_1, ugi=user (auth:SIMPLE)]]] // GOOD
+</code></pre>
+
+<h3 id="372-olap">37.2 OLAP遍历</h3>
+<p>JanusGraph-Hadoop使用TinkerPop的hadoop-gremlin包进行通用OLAP遍历图，并通过利用Apache Spark并行化查询。</p>
+<h4 id="3721-spark-localolap">37.2.1 使用Spark Local进行OLAP遍历</h4>
+<p>这里演示的后端是Cassandra，下面是OLAP示例。将需要特定于该存储后端的附加配置。配置由gremlin.hadoop.graphReader属性指定，该属性指定从存储后端读取数据的类。</p>
+<p>JanusGraph目前支持以下graphReader类：
+- Cassandra3InputFormat 与Cassandra 3一起使用
+- CassandraInputFormat 与Cassandra 2一起使用
+- HBaseInputFormat和HBaseSnapshotInputFormatHBase一起使用
+以下属性文件可用于连接Cassandra中的JanusGraph实例，以便它可以与HadoopGraph一起使用来运行OLAP查询。</p>
+<pre><code># read-cassandra-3.properties
+#
+# Hadoop Graph Configuration
+#
+gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
+gremlin.hadoop.graphReader=org.janusgraph.hadoop.formats.cassandra.Cassandra3InputFormat
+gremlin.hadoop.graphWriter=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoOutputFormat
+
+gremlin.hadoop.jarsInDistributedCache=true
+gremlin.hadoop.inputLocation=none
+gremlin.hadoop.outputLocation=output
+gremlin.spark.persistContext=true
+
+#
+# JanusGraph Cassandra InputFormat configuration
+#
+# These properties defines the connection properties which were used while write data to JanusGraph.
+janusgraphmr.ioformat.conf.storage.backend=cassandra
+# This specifies the hostname &amp; port for Cassandra data store.
+janusgraphmr.ioformat.conf.storage.hostname=127.0.0.1
+janusgraphmr.ioformat.conf.storage.port=9160
+# This specifies the keyspace where data is stored.
+janusgraphmr.ioformat.conf.storage.cassandra.keyspace=janusgraph
+# This defines the indexing backned configuration used while writing data to JanusGraph.
+janusgraphmr.ioformat.conf.index.search.backend=elasticsearch
+janusgraphmr.ioformat.conf.index.search.hostname=127.0.0.1
+# Use the appropriate properties for the backend when using a different storage backend (HBase) or indexing backend (Solr).
+
+#
+# Apache Cassandra InputFormat configuration
+#
+cassandra.input.partitioner.class=org.apache.cassandra.dht.Murmur3Partitioner
+
+#
+# SparkGraphComputer Configuration
+#
+spark.master=local[*]
+spark.executor.memory=1g
+spark.serializer=org.apache.spark.serializer.KryoSerializer
+spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
+</code></pre>
+
+<p>首先使用上述配置创建属性文件，然后在Gremlin控制台上加载它以运行OLAP查询，如下所示：</p>
+<pre><code>bin/gremlin.sh
+
+         \,,,/
+         (o o)
+-----oOOo-(3)-oOOo-----
+plugin activated: janusgraph.imports
+gremlin&gt; :plugin use tinkerpop.hadoop
+==&gt;tinkerpop.hadoop activated
+gremlin&gt; :plugin use tinkerpop.spark
+==&gt;tinkerpop.spark activated
+gremlin&gt; // 1. Open a the graph for OLAP processing reading in from Cassandra 3
+gremlin&gt; graph = GraphFactory.open('conf/hadoop-graph/read-cassandra-3.properties')
+==&gt;hadoopgraph[cassandra3inputformat-&gt;gryooutputformat]
+gremlin&gt; // 2. Configure the traversal to run with Spark
+gremlin&gt; g = graph.traversal().withComputer(SparkGraphComputer)
+==&gt;graphtraversalsource[hadoopgraph[cassandra3inputformat-&gt;gryooutputformat], sparkgraphcomputer]
+gremlin&gt; // 3. Run some OLAP traversals
+gremlin&gt; g.V().count()
+......
+==&gt;808
+gremlin&gt; g.E().count()
+......
+==&gt; 8046
+</code></pre>
+
+<h3 id="3722-spark-standalone-clusterolap">37.2.2 使用Spark Standalone Cluster进行OLAP遍历</h3>
+<p>上一节中介绍的步骤也可以与Spark独立群集一起使用，只需进行少量更改：</p>
+<ul>
+<li>更新spark.master属性以指向Spark主URL而不是本地URL</li>
+<li>更新spark.executor.extraClassPath以启用Spark执行程序以查找JanusGraph依赖项jar</li>
+<li>将JanusGraph依赖项jar复制到每个Spark执行器计算机上一步中指定的位置</li>
+</ul>
+<blockquote>
+<p>注意:
+我们将janusgraph-distribution/lib下的所有jar复制到/opt/lib/janusgraph /中，并在所有worker中创建相同的目录结构，并在所有worker中手动复制jar。</p>
+</blockquote>
+<p>用于OLAP遍历的最终属性文件如下：</p>
+<pre><code># read-cassandra-3.properties
+#
+# Hadoop Graph Configuration
+#
+gremlin.graph=org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph
+gremlin.hadoop.graphReader=org.janusgraph.hadoop.formats.cassandra.Cassandra3InputFormat
+gremlin.hadoop.graphWriter=org.apache.tinkerpop.gremlin.hadoop.structure.io.gryo.GryoOutputFormat
+
+gremlin.hadoop.jarsInDistributedCache=true
+gremlin.hadoop.inputLocation=none
+gremlin.hadoop.outputLocation=output
+gremlin.spark.persistContext=true
+
+#
+# JanusGraph Cassandra InputFormat configuration
+#
+# These properties defines the connection properties which were used while write data to JanusGraph.
+janusgraphmr.ioformat.conf.storage.backend=cassandra
+# This specifies the hostname &amp; port for Cassandra data store.
+janusgraphmr.ioformat.conf.storage.hostname=127.0.0.1
+janusgraphmr.ioformat.conf.storage.port=9160
+# This specifies the keyspace where data is stored.
+janusgraphmr.ioformat.conf.storage.cassandra.keyspace=janusgraph
+# This defines the indexing backned configuration used while writing data to JanusGraph.
+janusgraphmr.ioformat.conf.index.search.backend=elasticsearch
+janusgraphmr.ioformat.conf.index.search.hostname=127.0.0.1
+# Use the appropriate properties for the backend when using a different storage backend (HBase) or indexing backend (Solr).
+
+#
+# Apache Cassandra InputFormat configuration
+#
+cassandra.input.partitioner.class=org.apache.cassandra.dht.Murmur3Partitioner
+
+#
+# SparkGraphComputer Configuration
+#
+spark.master=spark://127.0.0.1:7077
+spark.executor.memory=1g
+spark.executor.extraClassPath=/opt/lib/janusgraph/*
+spark.serializer=org.apache.spark.serializer.KryoSerializer
+spark.kryo.registrator=org.apache.tinkerpop.gremlin.spark.structure.io.gryo.GryoRegistrator
+</code></pre>
+
+<p>然后使用Gremlin控制台中的属性文件，如下所示：</p>
+<pre><code>bin/gremlin.sh
+
+         \,,,/
+         (o o)
+-----oOOo-(3)-oOOo-----
+plugin activated: janusgraph.imports
+gremlin&gt; :plugin use tinkerpop.hadoop
+==&gt;tinkerpop.hadoop activated
+gremlin&gt; :plugin use tinkerpop.spark
+==&gt;tinkerpop.spark activated
+gremlin&gt; // 1. Open a the graph for OLAP processing reading in from Cassandra 3
+gremlin&gt; graph = GraphFactory.open('conf/hadoop-graph/read-cassandra-3.properties')
+==&gt;hadoopgraph[cassandra3inputformat-&gt;gryooutputformat]
+gremlin&gt; // 2. Configure the traversal to run with Spark
+gremlin&gt; g = graph.traversal().withComputer(SparkGraphComputer)
+==&gt;graphtraversalsource[hadoopgraph[cassandra3inputformat-&gt;gryooutputformat], sparkgraphcomputer]
+gremlin&gt; // 3. Run some OLAP traversals
+gremlin&gt; g.V().count()
+......
+==&gt;808
+gremlin&gt; g.E().count()
+......
+==&gt; 8046
+</code></pre>
+
+<h3 id="373">37.3 其他顶点程序</h3>
+<p>Apache TinkerPop提供各种顶点程序。顶点程序在每个顶点上运行，直到达到终止条件或达到固定的迭代次数。由于顶点程序的并行特性，它们可以利用Spark或Giraph等并行计算框架来提高性能。</p>
+<p>一旦熟悉如何配置JanusGraph以使用Spark，您就可以运行Apache TinkerPop提供的所有其他顶点程序，如Page Rank，Bulk Loading和Peer Pressure。有关更多详细信息，请参阅<a href="http://tinkerpop.apache.org/docs/3.3.3/reference/#vertexprogram">TinkerPop VertexProgram文档</a>。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../advanced_schema/" class="btn btn-neutral float-right" title="38.JanusGraph监控">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../datatype_and_attribute_serializer_configuration/" class="btn btn-neutral" title="36.数据类型和属性序列化配置"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../datatype_and_attribute_serializer_configuration/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../advanced_schema/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

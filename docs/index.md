@@ -7,7 +7,7 @@
 
 [Docs](http://docs.janusgraph.org/latest/) • [GitHub](https://github.com/JanusGraph/janusgraph/) • [Download](https://github.com/JanusGraph/janusgraph/releases/)
 
-![JanusGraph](../img/janusgraph.png)
+![JanusGraph](./img/janusgraph.png)
 
 JanusGraph是一个弹性易扩展的图形数据库，它优化用于存储和查询包含分布在多机器集群上的数千亿个顶点和边的图。JanusGraph是一个事务数据库，可以支持数千个并发用户实时执行复杂的图遍历。
 

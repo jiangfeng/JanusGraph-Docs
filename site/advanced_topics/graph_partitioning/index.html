@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>35.图分区 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "35.\u56fe\u5206\u533a";
+    var mkdocs_page_input_path = "advanced_topics/graph_partitioning.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bulk_loading/">34.批量加载</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">35.图分区</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#35">35、 图分区</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#351">35.1 边缘切割</a></li>
+        
+            <li><a class="toctree-l4" href="#352">35.2 顶点切割</a></li>
+        
+            <li><a class="toctree-l4" href="#353">35.3 图分区常见问题解答</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>V. 高级特性 &raquo;</li>
+        
+      
+    
+    <li>35.图分区</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="35">35、 图分区</h2>
+<p>当JanusGraph部署在多个存储后端实例的集群上时，图表将在这些计算机上进行分区。由于JanusGraph将图形存储在邻接列表表示中，因此将顶点分配给机器确定了分区。默认情况下，JanusGraph使用随机分区策略将顶点随机分配给计算机。随机分区非常有效，无需配置，并可实现平衡分区。目前不支持显式分区。</p>
+<pre><code>cluster.max-partitions = 32
+id.placement = simple
+</code></pre>
+
+<p>配置选项max-partitions控制JanusGraph创建的虚拟分区数。此数字应大约是存储后端实例数的两倍。如果预计存储后端实例集群将增长，请在可预见的未来估计集群的大小，并将此数量作为基准。将此数字设置得过大会不必要地破坏群集，从而导致性能下降。此数字应大于JanusGraph图中最大预期节点数。它必须大于1且幂为2。</p>
+<p>图形分区有两个方面可以单独控制：边缘切割和顶点切割。</p>
+<h3 id="351">35.1 边缘切割</h3>
+<p>在将顶点分配给分区时，人们努力优化分配，使得经常共同遍历的顶点托管在同一台机器上。假设顶点A分配给机器1，顶点B分配给机器2.顶点之间的边缘称为切边，因为它的端点托管在不同的机器上。遍历此边缘作为图形查询的一部分需要在机器之间进行通信，这会减慢查询处理速度。因此，希望减少频繁遍历边缘的边缘切割。反过来，这需要将频繁遍历的边缘的相邻顶点放置在同一分区中。</p>
+<p>顶点通过指定的顶点id放置在分区中。分区本质上是顶点id的连续范围。要在特定分区中放置顶点，JanusGraph会从分区的顶点id范围中选择一个id。JanusGraph通过配置的放置策略控制顶点到分区的分配。默认情况下，在同一事务中创建的顶点将分配给同一分区。这种策略很容易推理，并且在同一事务中经常共同遍历顶点的情况下运行良好 - 通过优化加载策略到该效果，或者因为顶点自然地以这种方式添加到图形中。但是，策略是有限的，当在大型事务中加载数据时导致不平衡的分区，而不是许多用例的最佳策略。IDPlacementStrategy接口并通过ids.placement选项在配置中注册它。</p>
+<p>实现时IDPlacementStrategy，请注意分区由整数id标识，范围从0到配置的虚拟分区数减1.对于我们的示例配置，有分区0,1,2,3，..31。分区ID与顶点ID不同。当JanusGraph服务器与存储后端位于同一主机上时，边缘切割更有意义。如果您必须在遍历的每一跳上对不同的主机进行网络呼叫，则边缘削减和自定义放置策略的好处可能会大大无效。</p>
+<h3 id="352">35.2 顶点切割</h3>
+<p>边切优化旨在减少交叉通信，从而改善查询执行，而顶点切割解决了由具有大量入射边的顶点引起的热点问题。虽然以顶点为中心的索引有效地解决了大度顶点的查询性能，但是需要顶点切割来解决非常大的图上的热点问题。</p>
+<p>剪切顶点意味着在图中的每个分区上存储该顶点的邻接列表的子集。换句话说，顶点及其邻接列表被分区，从而有效地将该单个顶点上的负载分布在集群中的所有实例上并移除热点。</p>
+<p>JanusGraph按标签切割顶点。顶点标签可以定义为分区，这意味着该标签的所有顶点将以上述方式在整个集群中进行分区。</p>
+<pre><code>mgmt = graph.openManagement()
+mgmt.makeVertexLabel('user').make()
+mgmt.makeVertexLabel('product').partition().make()
+mgmt.commit()
+</code></pre>
+
+<p>在上面的示例中，product定义为分区顶点标签，user是普通标签。这种配置有利于数千种产品但数百万用户和用户与产品之间记录交易的情况。在这种情况下，产品顶点将具有非常高的程度，如果没有分区，流行的产品将变成热点。</p>
+<h3 id="353">35.3 图分区常见问题解答</h3>
+<h4 id="3531">35.3.1 随机分区与显式分区</h4>
+<p>当图表很小或由少数存储实例容纳时，最好使用随机分区以简化。根据经验，当图形增长到数十亿个边缘的10s时，应该强烈考虑启用显式图形分区并配置合适的分区启发式算法。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../datatype_and_attribute_serializer_configuration/" class="btn btn-neutral float-right" title="36.数据类型和属性序列化配置">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../bulk_loading/" class="btn btn-neutral" title="34.批量加载"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../bulk_loading/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../datatype_and_attribute_serializer_configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

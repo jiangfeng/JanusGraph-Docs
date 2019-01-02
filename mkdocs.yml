@@ -29,5 +29,25 @@ nav:
   - 18.Apache Cassandra: ./storage_backend/apache_cassandra.md
   - 19.Apache Hbase: ./storage_backend/apache_hbase.md
 
+- IV. 后端索引:
+  - 23.查询语法和数据类型: ./index_backends/search_predicates_and_data_types.md
+  - 24.索引参数和全文搜索: ./index_backends/index_parameters_and_full-text_search.md
+  - 25.字段映射: ./index_backends/field_mapping.md
+  - 26.直接索引查询: ./index_backends/direct_index_query.md
+  - 27.Elasticsearch: ./index_backends/elasticsearch.md
+  - 28.Apache Solr: ./index_backends/apache_solr.md
+  - 29.Apache_Lucene: ./index_backends/apache_lucene.md
+
+- V. 高级特性:
+  - 30.Advanced Schema: ./advanced_topics/advanced_schema.md
+  - 31.最终一致的存储后端: ./advanced_topics/eventually_consistent_storage_backends.md
+  - 32.失败 & 重试: ./advanced_topics/failure_recovery.md
+  - 33.索引管理: ./advanced_topics/index_management.md
+  - 34.批量加载: ./advanced_topics/bulk_loading.md
+  - 35.图分区: ./advanced_topics/graph_partitioning.md
+  - 36.数据类型和属性序列化配置: ./advanced_topics/datatype_and_attribute_serializer_configuration.md
+  - 37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用: ./advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin.md
+  - 38.JanusGraph监控: ./advanced_topics/advanced_schema.md
+  - 39.从Titan迁移: ./advanced_topics/migrating_from_titan.md
 
 theme: readthedocs

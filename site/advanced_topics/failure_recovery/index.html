@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>32.失败 & 重试 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "32.\u5931\u8d25 & \u91cd\u8bd5";
+    var mkdocs_page_input_path = "advanced_topics/failure_recovery.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">32.失败 & 重试</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#32">第32章 故障和恢复</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#321">32.1 事务失败</a></li>
+        
+            <li><a class="toctree-l4" href="#322-janusgraph">32.2 JanusGraph实例失败</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>V. 高级特性 &raquo;</li>
+        
+      
+    
+    <li>32.失败 & 重试</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="32">第32章 故障和恢复</h2>
+<p>JanusGraph是一个高度可用且强大的图形数据库。在大规模的JanusGraph部署失败是不可避免的。本页介绍了一些失败情况以及JanusGraph如何处理它们。</p>
+<h3 id="321">32.1 事务失败</h3>
+<p>事务失败的原因有很多。如果事务在提交之前失败，那么更改将被丢弃，应用程序可以根据业务逻辑重试事务。同样，锁或其他一致性失败将在持久性之前导致异常，因此可以重试。事务的持久性阶段是JanusGraph开始将数据持久化到各种后端系统的时候。</p>
+<p>JanusGraph首先将所有图形变化持久化到存储后端。此持久性作为批处理变化执行，以确保对支持原子性的后端以原子方式提交该变化。如果批处理更改由于存储后端中的异常而失败，则整个事务失败。</p>
+<p>但是，这可能与索引和日志不一致。为了自动修复这些不一致，JanusGraph可以通过维护配置启用的事务预写日志。</p>
+<pre><code>tx.log -tx = true
+tx.max-commit-time = 10000
+</code></pre>
+
+<p>max-commit-time属性用于确定事务何时失败。如果事务的持久性阶段花费的时间超过此时间，JanusGraph将在必要时尝试恢复它。因此，应该将此超时配置为持久性最大持续时间的上限。注意，这并不包括提交之前花费的时间。</p>
+<p>此外，必须设置一个单独的进程来读取日志，以识别部分失败的事务并修复导致的任何不一致。建议在连接到集群的单独机器上运行事务修复过程，以隔离故障。配置一个单独控制的进程来运行以下操作:开始时间指定从epoch开始恢复进程开始从写前日志读取的时间。</p>
+<pre><code>recovery = JanusGraphFactory.startTransactionRecovery(graph, startTime, TimeUnit.MILLISECONDS);
+</code></pre>
+
+<p>启用事务预写日志会导致对事务进行额外的写操作，从而增加延迟。另请注意，存储日志需要额外的空间。事务预写日志具有2天的可配置生存时间，这意味着日志条目在该时间之后到期以保持较小的存储开销。有关用于微调日志记录行为的所有日志相关配置选项的完整列表，请参阅第15章，配置参考。</p>
+<h3 id="322-janusgraph">32.2 JanusGraph实例失败</h3>
+<p>JanusGraph对于单个实例失败是健壮的，因为JanusGraph集群的其他实例不受此类失败的影响，并且在重新启动失败的实例时可以继续处理事务而不会损失性能。</p>
+<p>然而，一些模式相关的操作(如安装索引)需要协调所有JanusGraph实例。因此，JanusGraph维护所有运行实例的记录。如果一个实例失败，即没有正确地关闭，JanusGraph会认为它是活动的，并期望它参与集群范围的操作，这些操作随后会失败，因为该实例没有参与或没有确认操作。</p>
+<p>在这种情况下，用户必须手动从集群中删除失败的实例记录，然后重试操作。要删除失败的实例，请对任何正在运行的JanusGraph实例打开一个管理事务，检查正在运行的实例列表，以识别失败的实例，最后删除它。</p>
+<pre><code>mgmt = graph.openManagement()
+mgmt.getOpenInstances() //all open instances
+==&gt;7f0001016161-dunwich1(current)
+==&gt;7f0001016161-atlantis1
+mgmt.forceCloseInstance('7f0001016161-atlantis1') //remove an instance
+mgmt.commit()
+</code></pre>
+
+<p>当前JanusGraph实例的惟一标识符是用后缀(current)标记的，以便于容易识别。这个实例不能通过forceCloseInstance方法关闭，而是应该通过g.close()关闭。</p>
+<p>必须确保手动删除的实例确实不再活动。从集群中删除一个活动的JanusGraph实例可能会导致数据不一致。因此，特别当JanusGraph在实例自动重启的环境中操作时，请小心使用此方法。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../index_management/" class="btn btn-neutral float-right" title="33.索引管理">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../eventually_consistent_storage_backends/" class="btn btn-neutral" title="31.最终一致的存储后端"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../eventually_consistent_storage_backends/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../index_management/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

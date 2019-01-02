@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>5.数据实例和数据模型 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "5.\u6570\u636e\u5b9e\u4f8b\u548c\u6570\u636e\u6a21\u578b";
+    var mkdocs_page_input_path = "janusgraph_basics/schema_and_data_modeling.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../configuration/">4.基本配置</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">5.数据实例和数据模型</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#51-defining-edge-labels">5.1 Defining Edge Labels(定义边标签)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#511-edge-lable-multiplicity">5.1.1 Edge Lable Multiplicity（边标签的多样性）</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#52-defining-property-keys">5.2 Defining Property Keys (定义属性键)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#521-property-key-data-type">5.2.1 Property Key Data Type（属性键数据类型）</a></li>
+        
+            <li><a class="toctree-l4" href="#522-property-key-cardinality">5.2.2 Property Key Cardinality（属性键的基数）</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#53-relation-types">5.3 Relation Types（关系类型）</a></li>
+    
+
+    <li class="toctree-l3"><a href="#54-defining-vertex-labels">5.4 Defining Vertex Labels（定义顶点标签）</a></li>
+    
+
+    <li class="toctree-l3"><a href="#55-automatic-schema-makerschema">5.5 Automatic Schema Maker（自动创建schema）</a></li>
+    
+
+    <li class="toctree-l3"><a href="#56-changing-schema-elementsschema">5.6 Changing Schema Elements(更改schema元素)</a></li>
+    
+
+    <li class="toctree-l3"><a href="#57-schema-constraintsschema">5.7 Schema Constraints（schema约束）</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>II.Janusgraph基础知识 &raquo;</li>
+        
+      
+    
+    <li>5.数据实例和数据模型</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>每个JanusGraph都有一个schema，该schema由edge labels，property keys,和vertex组成.JanusGraph schema可以显示（明确）定义，也可以隐式定义，鼓励用户在开发应用程式时显示定义schema。 明确定义的schema是一个健壮的图应用程序的重要组成部分，并且极大的改善软件的协同开发。要注意的是，JanusGraph schema会随着时间的推移而不断改变，并且不会中断正常的数据库操作。扩展schema并不会拖慢查询的速度，也不需要数据库停机。</p>
+<h2 id="51-defining-edge-labels">5.1 Defining Edge Labels(定义边标签)</h2>
+<p>链接两个定点的边都有一个定义关系的标签。例如，顶点A和顶点B之间的边标签friend标志着两人之间的友谊关系。</p>
+<p>要定义边标签，请在打开的图形或管理事务上调用MakeEdgeLabel ( String )，并提供边标签的名称作为参数。边标签名称在图中必须唯一。方法会返回一个允许定义边标签多样性的builder。边标签的多样性定义了具有该标签的边的多样性约束，既一对顶点间的最大边个数。JanusGraph支持如下的多样性。</p>
+<h3 id="511-edge-lable-multiplicity">5.1.1 Edge Lable Multiplicity（边标签的多样性）</h3>
+<p>Multiplicity Settings（多样性设置）</p>
+<ul>
+<li>MULTI：任意一对的顶点间允许多个标签相同的边。也就是说，该图是关于这种边缘标签的多图。边的多样性没有约束。</li>
+<li>SIMPLE：任意一对顶点之间只允许一条此类标签的边。也就是说，该图是关于标签的简单图。确保对于给定的标签和一对顶点边是唯一的。</li>
+<li>MANY2ONE:在图形中的任何顶点上最多允许此标签的一个输出边，但不限制输入边个数。边缘标签mother是MANY2ONE多样性的一个例子，因为每个人最多只有一个母亲，但母亲可以有多个孩子。</li>
+<li>ONE2MANY：在图形中的任何顶点上最多允许此标签的一个输入边，但不限制输出边。边标签winnerOf是ONE2MANY多样性的一个例子，因为每个比赛最多只赢一个人，但一个人可以赢得多个比赛。</li>
+<li>ONE2ONE：在图表的任何顶点上最多允许此标签的一个输入边和一个输出边。边标签married是ONE2ONE多样性的一个例子，因为一个人与另一个人结婚。</li>
+</ul>
+<p>默认的多样性是MULTI。通过调用make()构建器上的方法来完成边标签的定义，该构建器返回定义的边标签，如以下示例所示。</p>
+<pre><code>mgmt = graph.openManagement()
+follow = mgmt.makeEdgeLabel('follow').multiplicity(MULTI).make()
+mother = mgmt.makeEdgeLabel('mother').multiplicity(MANY2ONE).make()
+mgmt.commit()
+</code></pre>
+<h2 id="52-defining-property-keys">5.2 Defining Property Keys (定义属性键)</h2>
+<p>顶点和边的属性是键值对.例如，属性name='Daniel'具有键name和值'Daniel'。 属性键是JanusGraph架构的一部分，可以约束允许的数据类型和值的Cardinality（基数）。
+要定义属性键，请调用makePropertyKey(String)打开的图或管理事务器（management transaction），并提供属性键的名称作为参数。属性键名称在图形中必须是唯一的，建议避免使用属性名称中的空格或特殊字符。此方法返回属性键的构建器。</p>
+<h3 id="521-property-key-data-type">5.2.1 Property Key Data Type（属性键数据类型）</h3>
+<p>使用dataType(Class)来定义属性键的数据类型。JanusGraph将强制执行与关联键的所有值，确人都具有已配置的数据类型，从而确保添加到图中的数据有效。例如，可以定义为name键具有String数据类型。</p>
+<p>定义数据类型Object.class，以便允许任何（可序列化）值与键关联。但是，鼓励尽可能使用具体的数据类型。配置的数据类型必须是实体类，而不是接口或抽象类。JanusGraph强制实现类相等，因此不允许添加已配置数据类型的子类。</p>
+<p>JanusGraph支持以下数据类型。</p>
+<p>表5.1 原生JanusGraph数据类型</p>
+<p>名称  描述
+String  字符串
+Character   单个字符
+Boolean true或false
+Byte    byte值
+Short   short值
+Integer integer值
+Long    long值
+Float   4字节浮点数
+Double  8字节浮点数
+Date    时间(java.util.Date)
+Geoshape    地理形状，如点，圆或框
+UUID    通用唯一标识符（java.util.UUID）</p>
+<h3 id="522-property-key-cardinality">5.2.2 Property Key Cardinality（属性键的基数）</h3>
+<p>使用cardinality(Cardinality)定义与在任何给定的顶点的键关联的值允许的基数。</p>
+<p>基数的设置
+SINGLE:对于此键，每个元素最多允许一个值。换句话说，键→值映射对于图中的所有元素都是唯一的。属性键birthDate是SINGLE基数的一个例子，因为每个人只有一个出生日期。
+LIST:允许每个元素的任意数量的值用于此类键。换句话说，键与允许重复值的值列表相关联。假设我们将传感器建模为图形中的顶点，则属性键sensorReading是具有LIST基数的示例，以允许记录大量（可能重复的）传感器读数。
+SET:允许多个但不重复的值用于此类键。换句话说，键与一组不重复的值相关联。name如果我们想要捕获个人的所有姓名（包括昵称，婚前姓名等），则属性键具有SET基数。
+默认的基数是SINGLE。要注意的是，边和属性使用SINGLE作为基数，是不支持为为边或属性附加多个值。</p>
+<pre><code>mgmt = graph.openManagement()
+birthDate = mgmt.makePropertyKey('birthDate').dataType(Long.class).cardinality(Cardinality.SINGLE).make()
+name = mgmt.makePropertyKey('name').dataType(String.class).cardinality(Cardinality.SET).make()
+sensorReading = mgmt.makePropertyKey('sensorReading').dataType(Double.class).cardinality(Cardinality.LIST).make()
+mgmt.commit()
+</code></pre>
+<h2 id="53-relation-types">5.3 Relation Types（关系类型）</h2>
+<p>边标签和属性键共同称为关系类型。关系类型的名称在图中必须唯一，这意味着属性键和边缘标签不能具有相同的名称。JanusGraph API中有一些方法可以查询是否存在或检索包含属性键和边标签的关系类型。</p>
+<pre><code>mgmt = graph.openManagement()
+if (mgmt.containsRelationType('name'))
+    name = mgmt.getPropertyKey('name')
+mgmt.getRelationTypes(EdgeLabel.class)
+mgmt.commit()
+</code></pre>
+<h2 id="54-defining-vertex-labels">5.4 Defining Vertex Labels（定义顶点标签）</h2>
+<p>像边一样，顶点也有标签。但与边缘标签不同，顶点标签是可选的。顶点标签可用于区分不同类型的顶点，例如用户顶点和产品顶点。</p>
+<p>尽管标签在概念和数据模型级别是可选的，但JanusGraph将标签作为内部实现分配各每个顶点。由AddVertex方法创建的顶点使用JanuSgraph的默认标签。</p>
+<p>要创建标签，调用makeVertexLabel(String).make()打开的图形或管理事务，并提供顶点标签的名称作为参数。顶点标签名称在图表中必须是唯一的。</p>
+<pre><code>mgmt = graph.openManagement()
+person = mgmt.makeVertexLabel('person').make()
+mgmt.commit()
+// Create a labeled vertex
+person = graph.addVertex(label, 'person')
+// Create an unlabeled vertex
+v = graph.addVertex()
+graph.tx().commit()
+</code></pre>
+<h2 id="55-automatic-schema-makerschema">5.5 Automatic Schema Maker（自动创建schema）</h2>
+<p>如果没有明确定义边标签，属性键或顶点标签，则在添加边，顶点或属性设置期间首次使用时，将隐式定义边标签，属性键或顶点标签。DefaultSchemaMaker配置用于JanusGraph图定义这样的类型。</p>
+<p>默认情况下，隐式创建的边标签具有多样性MULTI，隐式创建的属性键具有基数SINGLE和数据类型Object.class。用户可以通过实现和注册他们自己的DefaultSchemaMaker来控制schema元素的自动创建。</p>
+<p>强烈建议通过schema.default=none在JanusGraph图形配置中进行设置，明确定义所有schema元素并禁用自动schema创建。</p>
+<h2 id="56-changing-schema-elementsschema">5.6 Changing Schema Elements(更改schema元素)</h2>
+<p>边标签，属性键或顶点标的定义一旦提交到图，就无法更改。可以通过JanusGraphManagement.changeName(JanusGraphSchemaElement, String) 更改属性键的名称，如下示例属性键place重命名为location.</p>
+<pre><code>mgmt = graph.openManagement()
+place = mgmt.getPropertyKey('place')
+mgmt.changeName(place, 'location')
+mgmt.commit()
+</code></pre>
+<p>要注意的是，在当前运行的事务和集群中的其他JanusGraph图形实例中，模式名称更改可能不会立即可见。尽管存储后端向所有的JanusGraph实例通知schema名称的更改，但模式schema的更改可能需要一段时间才能生效，并且在某些故障情况，如网络分区，可能需要重新启动实例。如果这些与重命名同时发生。因此，用户必须确保满足以下任一条件：</p>
+<p>重命名的标签和键当前未处于活跃状态（既写入或读取），并且在所有JanusGraph应答schema名称更改前不会使用。
+运行事务会主动适应短暂的中间时期，在这期间，旧名称或新名称都是有效的，这取决于JanuSgraph实例和名称更改公告的状态。这可能意味着同时到查询两个名称的schema。
+如果需要重新定义现有schema类型，建议将此类型的名称修改成现在未使用（并且永不使用）。之后，可以使用原始名称定义新的标签或key，从而有效的替换旧标签或键。但需要注意的是，这不会影响以前现有类型写入的顶点、边或属性。 不支持在线重新定义现有图形元素，必须通过批量图形转换完成。</p>
+<h2 id="57-schema-constraintsschema">5.7 Schema Constraints（schema约束）</h2>
+<p>模式的定义允许用户配置显式属性和连接约束。属性可以绑定到特定的顶点标签和（或）边标签。此外，链接约束允许用户明确定义那两个顶点标签允许可以通过边标签连接。这些约束可用于确保图形与给定的域模型匹配。例如在众神图，一个god可以是另一个兄弟的god，不是一个monster的兄弟，神可以有年龄属性，但是location不能有年龄属性。默认情况下禁用这些约束。</p>
+<p>启用这些schema约束需要设置schema.constraints=true。此设置取决于设置schema.default。如果schema.default设置成none, 则违反schema约束会抛出IllegalArgumentException。如果schema.default没有设置成none，则会自动创建schema约束，但不会抛出异常。激活模式约束对现有数据没有影响，因为这些模式约束仅作用在插入的过程。因此，这些约束完全不会影响数据的读取。</p>
+<p>可以使用JanusGraphManagement.addProperties(VertexLabel, PropertyKey...)绑定多个属性到顶点，例如：</p>
+<pre><code>mgmt = graph.openManagement()
+person = mgmt.makeVertexLabel('person').make()
+name = mgmt.makePropertyKey('name').dataType(String.class).cardinality(Cardinality.SET).make()
+birthDate = mgmt.makePropertyKey('birthDate').dataType(Long.class).cardinality(Cardinality.SINGLE).make()
+mgmt.addProperties(person, name, birthDate)
+mgmt.commit()
+</code></pre>
+<p>可以使用JanusGraphManagement.addProperties(EdgeLabel, PropertyKey...)为边绑定多个属性。例如：</p>
+<pre><code>mgmt = graph.openManagement()
+follow = mgmt.makeEdgeLabel('follow').multiplicity(MULTI).make()
+name = mgmt.makePropertyKey('name').dataType(String.class).cardinality(Cardinality.SET).make()
+mgmt.addProperties(follow, name)
+mgmt.commit()
+</code></pre>
+<p>可以使用JanusGraphManagement.addConnection(EdgeLabel, VertexLabel out, VertexLabel in)定义传出，传入和边之间的连接，例如：</p>
+<pre><code>mgmt = graph.openManagement()
+person = mgmt.makeVertexLabel('person').make()
+company = mgmt.makeVertexLabel('company').make()
+works = mgmt.makeEdgeLabel('works').multiplicity(MULTI).make()
+mgmt.addConnection(works, person, company)
+mgmt.commit()
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../gremlin_query_language/" class="btn btn-neutral float-right" title="6.Gremin查询语言">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../configuration/" class="btn btn-neutral" title="4.基本配置"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../configuration/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../gremlin_query_language/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

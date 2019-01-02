@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>6.Gremin查询语言 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "6.Gremin\u67e5\u8be2\u8bed\u8a00";
+    var mkdocs_page_input_path = "janusgraph_basics/gremlin_query_language.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">6.Gremin查询语言</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#61">6.1. 遍历介绍</a></li>
+    
+
+    <li class="toctree-l3"><a href="#62">6.2. 遍历迭代</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>II.Janusgraph基础知识 &raquo;</li>
+        
+      
+    
+    <li>6.Gremin查询语言</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><img alt="" src="../../img/gremlin-logo.png" /></p>
+<p>Gremlin是JanusGraph的查询语言，用于从图中检索数据和更新数据。 Gremlin是一种面向路径的语言，它能够简洁地表示复杂的图形遍历和多步操作。 Gremlin是一种函数式语言，遍历运算被链接在一起形成类似路径的表达式。 例如，“从Hercules，遍历他的父亲，然后他父亲的父亲，并返回祖父的名字。”</p>
+<p>Gremlin是Apache TinkerPop的一个组件。 它独立于JanusGraph开发，并且支持大多数的图数据库。 通过Gremlin查询语言在JanusGraph基础上开发的应用程序，用户可以避免被数据库绑定，因为他们的应用程序可以迁移到支持Gremlin的其他图数据库。</p>
+<p>本节是Gremlin查询语言的简要概述。 有关Gremlin的更多信息，请参阅以下资源：</p>
+<ul>
+<li>Complete Gremlin Manual: Gremlin的参考手册。</li>
+<li>Gremlin Console Tutorial: 学习如何有效地使用Gremlin控制台以交互方式遍历和分析图形。</li>
+<li>Practical Gremlin Book: 图数据库和Gremlin查询语言的入门指南。</li>
+<li>Gremlin Recipes: Gremlin的最佳实践和常见遍历模式的集合。</li>
+<li>Gremlin Language Drivers: 使用不同的编程语言连接到Gremlin服务器，包括Go，JavaScript，.NET / C＃，PHP，Python，Ruby，Scala和TypeScript。</li>
+<li>Gremlin Language Variants: 学习如何在编程语言中嵌入Gremlin。</li>
+<li>Gremlin for SQL developers: 使用SQL查询数据的方式来学习Gremlin。</li>
+</ul>
+<h2 id="61">6.1. 遍历介绍</h2>
+<p>Gremlin查询是一系列从左到右的计算操作/函数。 下面通过第3章“入门”中讨论的Gods图来展示一个简单的祖父查询的示例。</p>
+<pre><code>gremlin&gt; g.V().has('name', hercules').out('father').out('father').values('name')
+==&gt;saturn
+</code></pre>
+<p>上面查询的解读：</p>
+<ol>
+<li>g：当前图的遍历句柄。</li>
+<li>V：图中所有的顶点。</li>
+<li>has(‘name’, ‘hercules’)：过滤出顶点name为hercules的顶点。</li>
+<li>out(‘father’)：从hercules顶点遍历出边为father的边。</li>
+<li>out(‘father’)：从hercules的father顶点遍历出边为father的边。</li>
+<li>name：获取hercules祖父顶点的name属性的值。</li>
+</ol>
+<p>总之，这些步骤构成了类似路径的遍历查询。 每个步骤都可以分解并显示其结果。 在构建更大，更复杂的查询时，这种构建遍历/查询的方式很有用。</p>
+<pre><code>==&gt;graphtraversalsource[janusgraph[cql:127.0.0.1], standard]
+gremlin&gt; g.V().has('name', 'hercules')
+==&gt;v[24]
+gremlin&gt; g.V().has('name', 'hercules').out('father')
+==&gt;v[16]
+gremlin&gt; g.V().has('name', 'hercules').out('father').out('father')
+==&gt;v[20]
+gremlin&gt; g.V().has('name', 'hercules').out('father').out('father').values('name')
+==&gt;saturn
+</code></pre>
+<p>对于正确性检查，通常可以查看每个返回值的属性值，而不是查看他们的id。</p>
+<pre><code>gremlin&gt; g.V().has('name', 'hercules').values('name')
+==&gt;hercules
+gremlin&gt; g.V().has('name', 'hercules').out('father').values('name')
+==&gt;jupiter
+gremlin&gt; g.V().has('name', 'hercules').out('father').out('father').values('name')
+==&gt;saturn
+</code></pre>
+<p>注意相关的遍历，展示了Hercules的整个父系树分支。 提供这种更复杂的遍历以展示语言的灵活性和可读性。 对Gremlin的有效掌握为JanusGraph用户提供了快速查询底层图结构遍历的能力。</p>
+<pre><code>gremlin&gt; g.V().has('name', 'hercules').repeat(out('father')).emit().values('name')
+==&gt;jupiter
+==&gt;saturn
+</code></pre>
+<p>下面提供了一些遍历示例。</p>
+<pre><code>gremlin&gt; hercules = g.V().has('name', 'hercules').next()
+==&gt;v[1536]
+gremlin&gt; g.V(hercules).out('father', 'mother').label()
+==&gt;god
+==&gt;human
+gremlin&gt; g.V(hercules).out('battled').label()
+==&gt;monster
+==&gt;monster
+==&gt;monster
+gremlin&gt; g.V(hercules).out('battled').valueMap()
+==&gt;{name=nemean}
+==&gt;{name=hydra}
+==&gt;{name=cerberus}
+</code></pre>
+<p>每一步（由分隔表示）是对上一步计算出的对象进行操作的函数。 Gremlin语言中有许多步（参见Gremlin Steps）。 通过简单地改变步骤或着改变步骤的顺序，可以实现不同的遍历。 下面的例子返回所有与Hercules战斗相同怪物的人的名字，并且除去Hercules本身（即“共同战士”或者“盟友”）。</p>
+<p>鉴于神的图形只有一个战斗者（Hercules），另一个战斗者（为了举例）被添加到图中，Gremlin展示了如何将顶点和边添加到图形中。</p>
+<pre><code>gremlin&gt; theseus = graph.addVertex('human')
+==&gt;v[3328]
+gremlin&gt; theseus.property('name', 'theseus')
+==&gt;null
+gremlin&gt; cerberus = g.V().has('name', 'cerberus').next()
+==&gt;v[2816]
+gremlin&gt; battle = theseus.addEdge('battled', cerberus, 'time', 22)
+==&gt;e[7eo-2kg-iz9-268][3328-battled-&gt;2816]
+gremlin&gt; battle.values('time')
+==&gt;22
+</code></pre>
+<p>添加顶点时，可以选择是否指定顶点标签。 但是添加边时必须指定边标签。 可以在顶点和边上设置作为键值对的属性。 使用SET或LIST基数定义的属性键，必须使用addProperty向顶点添加此属性。</p>
+<pre><code>gremlin&gt; g.V(hercules).as('h').out('battled').in('battled').where(neq('h')).values('name')
+==&gt;theseus
+</code></pre>
+<p>上面的例子有4个链接函数：out，in，except和values（即name是值的简写（’name’））。 每个的函数在下面逐条列出，其中V是顶点而U是任何对象，其中V是U的子集。</p>
+<ol>
+<li>out: V -&gt; V</li>
+<li>in: V -&gt; V</li>
+<li>except: U -&gt; U</li>
+<li>values: V -&gt; U</li>
+</ol>
+<p>将函数链接在一起时，传入类型必须与传出类型匹配，其中U匹配任何内容。 因此，上面的“共同战斗/盟友”遍历是正确的。</p>
+<blockquote>
+<p>注意：本节中介绍的Gremlin概述重点介绍了在Gremlin控制台中Gremlin-Groovy语言实现版本的使用。 Gremlin的其他语言驱动和实现也是可以使用的。</p>
+</blockquote>
+<h2 id="62">6.2. 遍历迭代</h2>
+<p>Gremlin控制台其中的一个特性是它从gremlin&gt;prompt自动迭代所有的查询结果。 这在REPL环境中很好用，而且它将结果作为String类型来展示。 当你开始编写Gremlin应用程序时，了解如何显式迭代遍历非常重要，因为应用程序的遍历不会自动迭代。 以下是迭代遍历的一些常用方法：</p>
+<ul>
+<li>iterate() - 预期或者可以忽略空值。</li>
+<li>next() - 获取一个结果，一定要先通过hasNext()判断。</li>
+<li>next(int n) - 获取第n个结果，一定要先通过hasNext()判断。</li>
+<li>toList() - 获取所有的结果作为一个list，如果没有结果则返回空列表。</li>
+</ul>
+<p>下面使用Java代码示例来演示这些概念：</p>
+<pre><code>Traversal t = g.V().has("name", "pluto"); // Define a traversal
+// Note the traversal is not executed/iterated yet
+if (t.hasNext()) { // Check if results are available
+    pluto = g.V().has("name", "pluto").next(); // Get one result
+    g.V(pluto).drop().iterate(); // Execute a traversal to drop pluto from graph
+}
+// Note the traversal can be cloned for reuse
+Traversal tt = t.asAdmin().clone();
+if (tt.hasNext()) {
+    System.err.println("pluto was not dropped!");
+}
+List&lt;Vertex&gt; gods = g.V().hasLabel("god").toList(); // Find all the gods
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../janusgraph_server/" class="btn btn-neutral float-right" title="7.JanusGraph服务">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../schema_and_data_modeling/" class="btn btn-neutral" title="5.数据实例和数据模型"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../schema_and_data_modeling/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../janusgraph_server/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

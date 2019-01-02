@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>26.直接索引查询 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "26.\u76f4\u63a5\u7d22\u5f15\u67e5\u8be2";
+    var mkdocs_page_input_path = "index_backends/direct_index_query.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../field_mapping/">25.字段映射</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">26.直接索引查询</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#26">26、 直接索引查询</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#261">26.1 请求参数</a></li>
+        
+            <li><a class="toctree-l4" href="#262">26.2 查询统计</a></li>
+        
+            <li><a class="toctree-l4" href="#263">26.3 陷阱</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>IV. 后端索引 &raquo;</li>
+        
+      
+    
+    <li>26.直接索引查询</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="26">26、 直接索引查询</h2>
+<p>JanusGraph的标准全局图查询机制支持顶点或边的布尔查询。换句话说，元素要么与查询匹配，要么不匹配。没有部分匹配或结果评分。  </p>
+<p>一些索引后端还支持模糊搜索查询。对于那些查询，计算每个匹配的分数以指示匹配的“良好性”，并且以其分数的顺序返回结果。模糊搜索在处理全文搜索查询时特别有用，其中匹配更多单词被认为更好。</p>
+<p>由于模糊搜索实现和评分算法在索引后端之间存在显着差异，因此JanusGraph本身不支持模糊搜索。但是，JanusGraph提供了一种直接索引查询机制，允许将搜索查询直接发送到索引后端进行评估（对于那些支持它的后端）。</p>
+<p>使用Graph.indexQuery()撰写是直接针对某个索引后端执行查询。此查询构建器需要两个参数：
+1. 要查询的索引后端的名称。这必须是在JanusGraph配置中配置的名称，并在属性键索引定义中使用
+2. 查询字符串</p>
+<p>构建器允许通过其limit(int)方法配置要返回的最大元素数。构建器offset(int)控制要跳过的结果集中的初始匹配数。要检索与指定索引后端中的给定查询匹配的所有顶点或边，请分别调用vertices()或edges()。无法同时查询顶点和边。这些方法返回一个Iterableover Result对象。结果对象包含匹配的句柄，可检索的getElement()和相关的分数 - getScore()。  </p>
+<p>请考虑以下示例：</p>
+<pre><code>ManagementSystem mgmt = graph.openManagement();
+PropertyKey text = mgmt.makePropertyKey(&quot;text&quot;).dataType(String.class).make();
+mgmt.buildIndex(&quot;vertexByText&quot;, Vertex.class).addKey(text).buildMixedIndex(&quot;search&quot;);
+mgmt.commit();
+// ... Load vertices ...
+for (Result&lt;Vertex&gt; result : graph.indexQuery(&quot;vertexByText&quot;, &quot;v.text:(farm uncle berry)&quot;).vertices()) {
+   System.out.println(result.getElement() + &quot;: &quot; + result.getScore());
+}
+</code></pre>
+
+<h3 id="261">26.1 请求参数</h3>
+<p>查询字符串直接传递给索引后端进行处理，因此查询字符串语法取决于索引后端支持的内容。对于顶点查询，JanusGraph将分析以“v.”开头的属性键引用的查询字符串。并通过句柄替换那些与属性键对应的索引字段。同样，对于边缘查询，JanusGraph将替换以“e.”开头的属性键引用。因此，要引用顶点的属性，请在查询字符串中使用“v.[KEY_NAME]”。同样，对于边缘写“e.[KEY_NAME]”。</p>
+<p>Elasticsearch和Lucene支持Lucene查询语法。有关更多信息，请参阅Lucene文档或Elasticsearch文档。上面示例中使用的查询遵循Lucene查询语法。</p>
+<pre><code>graph.indexQuery(&quot;vertexByText&quot;, &quot;v.text:(farm uncle berry)&quot;).vertices()
+</code></pre>
+
+<p>此查询匹配所有顶点，其中文本包含三个单词中的任何一个（按括号分组），分数匹配越高，文本中匹配的单词越多。  </p>
+<p>此外，Elasticsearch支持通配符查询，在查询字符串中使用“v.<em>”或“e.</em>”来查询元素上的任何属性是否匹配。</p>
+<h3 id="262">26.2 查询统计</h3>
+<p>有时需要知道从查询返回的总结果数量，而无需检索所有结果。幸运的是，Elasticsearch和Solr提供了一种不涉及检索和排名所有文档的快捷方式。此快捷方式通过".vertexTotals()", ".edgeTotals()", and ".propertyTotals()"方法对外提供。</p>
+<p>可以使用与indexQuery构建器相同的查询语法检索总计，但是大小将被覆盖为0。</p>
+<pre><code>graph.indexQuery(&quot;vertexByText&quot;, &quot;v.text:(farm uncle berry)&quot;).vertexTotals()
+</code></pre>
+
+<h3 id="263">26.3 陷阱</h3>
+<h4 id="2631">26.3.1 属性建名称</h4>
+<p>必须将包含非字母数字字符的属性键的名称放在引号中，以确保正确分析查询。</p>
+<pre><code>graph.indexQuery(&quot;vertexByText&quot;, &quot;v.\&quot;first_name\&quot;:john&quot;).vertices()
+</code></pre>
+
+<p>一些属性键名称可以通过JanusGraph索引后端实现进行转换。索引后端字段名称不支持空格，可能会将 "My Field Name"替换成"My•Field•Name",或者像Solr这样的索引后端可以将类型信息附加到名称，将 "myBooleanField"替换成"myBooleanField_b".这些转换发生在索引后端的IndexProvider实现中，在“mapKey2Field”方法中。索引后端可以保留特殊字符（例如•）并禁止对包含它们的字段建立索引。因此，建议避免使用属性名称中的空格和特殊字符。</p>
+<p>通常，进行直接索引查询取决于通常对用户隐藏的JanusGraph索引后端的实现细节，因此最好根据使用中的索引后端验证查询。</p>
+<h4 id="2632">26.3.2 元素标识符碰撞</h4>
+<p>字符串“v.”，“e.”和“p.” 用于分别在查询中标识顶点，边或属性元素。如果字段名称或查询值包含相同的字符序列，则可能导致查询字符串中的冲突并解析错误，如以下示例所示：</p>
+<pre><code>graph.indexQuery(&quot;vertexByText&quot;, &quot;v.name:v.john&quot;).vertices() //DOES NOT WORK!
+</code></pre>
+
+<p>要避免此类标识符冲突，请使用setElementIdentifier方法定义在查询的任何其他部分中不出现的唯一元素标识符字符串：</p>
+<pre><code>graph.indexQuery(&quot;vertexByText&quot;,&quot;$v$name:v.john&quot;).setElementIdentifier(&quot;$v$&quot;).vertices()
+</code></pre>
+
+<h4 id="2633">26.3.3 混合索引可用性延迟</h4>
+<p>插入数据后，如果查询立即遍历混合索引，则更改可能不可见。在Elasticsearch中，确定此延迟的配置选项是索引刷新间隔。在Solr中，主要配置选项是最长时间。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../elasticsearch/" class="btn btn-neutral float-right" title="27.Elasticsearch">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../field_mapping/" class="btn btn-neutral" title="25.字段映射"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../field_mapping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../elasticsearch/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>4.基本配置 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "4.\u57fa\u672c\u914d\u7f6e";
+    var mkdocs_page_input_path = "janusgraph_basics/configuration.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I.介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II.Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">4.基本配置</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#41">4.1. 配置示例</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#411-cassandraelasticsearch">4.1.1. Cassandra+Elasticsearch</a></li>
+        
+            <li><a class="toctree-l4" href="#412-hbasecaching">4.1.2. HBase+Caching</a></li>
+        
+            <li><a class="toctree-l4" href="#413-berkeleydb">4.1.3. BerkeleyDB</a></li>
+        
+            <li><a class="toctree-l4" href="#414">4.1.4. 更多示例</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#42">4.2. 应用配置</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#421-janusgraph">4.2.1 JanusGraph工厂模式</a></li>
+        
+            <li><a class="toctree-l4" href="#422-janusgraph">4.2.2. JanusGraph服务端</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#43">4.3. 全局配置</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#431">4.3.1. 离线选项配置</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III.存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>II.Janusgraph基础知识 &raquo;</li>
+        
+      
+    
+    <li>4.基本配置</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>一个JanusGraph图数据库集群由一个或多个JanusGraph实例组成。为了打开一个JanusGraph实例，必须提供一个配置指定JanusGraph如何去设置。</p>
+<p>一个JanusGraph配置需要指定那些组件可以使用，控制JanusGraph部署和操作的各个方面。并提供一些调优选项来达到JanusGraph集群的最大使用性能。</p>
+<p>一个最低的配置，JanusGraph配置必须定义一个持久化引擎也就是JanusGraph存储后端。<a href="https://docs.janusgraph.org/latest/storage-backends.html">第三章，存储后端</a>列举了所有支持的持久化引擎以及分别如何配置他们。如果需要支持图的高级查询（例如：全文检索，GEO检索或者范围检索），必须增加配置一个索引后端。详细可见<a href="https://docs.janusgraph.org/latest/index-backends.html">第IV部分，"索引后端"</a>。如果关注查询性能，需要支持缓存。缓存的设置和调优在<a href="https://docs.janusgraph.org/latest/caching.html">第13章 JanusGraph 缓存</a>有详细描述。</p>
+<h2 id="41">4.1. 配置示例</h2>
+<p>以下部分是一些解释如何在一些通用的后端引擎进行配置的示例，索引系统和性能组件，这只涉及一小部分可用的配置选项。参照<a href="https://docs.janusgraph.org/latest/config-ref.html">第15章 配置指南</a> 有所有选项的配置。</p>
+<h3 id="411-cassandraelasticsearch">4.1.1. Cassandra+Elasticsearch</h3>
+<p>设置JanusGraph使用Cassandra在本地运行的持久化引擎</p>
+<pre><code>storage.backend=cql
+storage.hostname=localhost
+
+index.search.backend=elasticsearch
+index.search.hostname=100.100.101.1, 100.100.101.2
+index.search.elasticsearch.client-only=true
+</code></pre>
+<h3 id="412-hbasecaching">4.1.2. HBase+Caching</h3>
+<p>设置JanusGraph使用远程运行的HBase存储引擎，为了获取更好的性能，同时使用JanusGraph的缓存组件。</p>
+<pre><code>storage.hostname=100.100.101.1
+storage.port=2181
+
+cache.db-cache = true
+cache.db-cache-clean-wait = 20
+cache.db-cache-time = 180000
+cache.db-cache-size = 0.5
+</code></pre>
+<h3 id="413-berkeleydb">4.1.3. BerkeleyDB</h3>
+<p>设置JanusGraph使用BerkeleyDB作为嵌入式存储引擎，将Elasticsearch作为嵌入式索引系统。</p>
+<pre><code>storage.backend=berkeleyje
+storage.directory=/tmp/graph
+
+index.search.backend=elasticsearch
+index.search.directory=/tmp/searchindex
+index.search.elasticsearch.client-only=false
+
+index.search.elasticsearch.local-mode=true
+</code></pre>
+<p>第15章：配置参考  详细介绍了所有这些配置选项。 JanusGraph发行版的conf目录包含其他配置示例。</p>
+<h3 id="414">4.1.4. 更多示例</h3>
+<p>conf/目录中有几个示例配置文件可用于快速启动JanusGraph。 这些文件的路径可以传递给JanusGraphFactory.open（...），如下所示：</p>
+<pre><code>// Connect to Cassandra on localhost using a default configuration
+graph = JanusGraphFactory.open("conf/janusgraph-cql.properties")
+// Connect to HBase on localhost using a default configuration
+graph = JanusGraphFactory.open("conf/janusgraph-hbase.properties")
+</code></pre>
+<h2 id="42">4.2. 应用配置</h2>
+<p>如何为JanusGraph提供配置取决于实例化模式。</p>
+<h3 id="421-janusgraph">4.2.1 JanusGraph工厂模式</h3>
+<h4 id="4211-gremlin">4.2.1.1. Gremlin控制台</h4>
+<p>JanusGraph发行版包含一个命令行Gremlin Console，它可以让您轻松入门并与JanusGraph进行交互。 
+调用bin/gremlin.sh（Unix/Linux或bin/gremlin.ba（Windows)以启动控制台，然后使用出厂打开JanusGraph图，其配置存储在可访问的属性配置文件中：</p>
+<pre><code>graph = JanusGraphFactory.open('path/to/configuration.properties')
+</code></pre>
+<h4 id="4212-janusgraph">4.2.1.2. JanusGraph嵌入</h4>
+<h4 id="4213">4.2.1.3. 短代码</h4>
+<pre><code>如果先前已配置JanusGraph图集群和/或仅需要定义存储后端，则JanusGraphFactory接受存储后端名称和主机名或目录的以冒号分隔的字符串表示形式。
+
+graph = JanusGraphFactory.open('cql:localhost')
+
+graph = JanusGraphFactory.open('berkeleyje:/tmp/graph')
+</code></pre>
+<h3 id="422-janusgraph">4.2.2. JanusGraph服务端</h3>
+<p>JanusGraph本身就是一组没有执行线程的jar文件。 连接和使用JanusGraph数据库有两种基本模式：</p>
+<p>模式：</p>
+<ul>
+<li>
+<ol>
+<li>可以通过在程序提供执行线程的客户端程序中嵌入JanusGraph调用来使用JanusGraph。</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>JanusGraph打包了一个长时间运行的服务器进程，该进程在启动时允许远程客户端或逻辑在单独的程序中运行以进行JanusGraph调用。这个长时间运行的服务器进程称为JanusGraph Server。</li>
+</ol>
+</li>
+</ul>
+<p>对于JanusGraph服务器，JanusGraph使用Apache TinkerPop堆栈的Gremlin Server来为客户端请求提供服务。 JanusGraph提供了一个开箱即用的配置，可以快速启动JanusGraph Server，但可以更改配置以提供广泛的服务器功能。</p>
+<p>配置JanusGraph Server是通过位于JanusGraph发行版的./conf/gremlin-server目录中的JanusGraph Server yaml配置文件完成的。要使用图形实例（JanusGraph）配置JanusGraph Server，JanusGraph Server配置文件需要以下设置：</p>
+<pre><code>...
+graphs: {
+  graph: conf/janusgraph-berkeleyje.properties
+}
+scriptEngines: {
+  gremlin-groovy: {
+    plugins: { org.janusgraph.graphdb.tinkerpop.plugin.JanusGraphGremlinPlugin: {},
+               org.apache.tinkerpop.gremlin.server.jsr223.GremlinServerGremlinPlugin: {},
+               org.apache.tinkerpop.gremlin.tinkergraph.jsr223.TinkerGraphGremlinPlugin: {},
+               org.apache.tinkerpop.gremlin.jsr223.ImportGremlinPlugin: {classImports: [java.lang.Math], methodImports: [java.lang.Math#*]},
+               org.apache.tinkerpop.gremlin.jsr223.ScriptFileGremlinPlugin: {files: [scripts/empty-sample.groovy]}}}}
+...
+</code></pre>
+<p>图表条目定义了与特定JanusGraph配置的绑定。 在上面的例子中，它将图形绑定到conf / janusgraph-berkeleyje.properties上的JanusGraph配置。 插件条目启用了JanusGraph Gremlin插件，该插件支持自动导入JanusGraph类，以便可以在远程提交的脚本中引用它们。</p>
+<p>在第7章JanusGraph Server中了解有关配置和使用JanusGraph Server的更多信息。</p>
+<h4 id="4221">4.2.2.1. 分布式服务</h4>
+<p>JanusGraph zip文件包含一个快速启动服务器组件，有助于更轻松地开始使用Gremlin Server和JanusGraph。 调用bin/janusgraph.sh start以使用Cassandra和Elasticsearch启动Gremlin Server。</p>
+<blockquote>
+<p>注意 </p>
+<p>出于安全原因，Elasticsearch和janusgraph.sh必须在非root帐户下运行*</p>
+</blockquote>
+<h2 id="43">4.3. 全局配置</h2>
+<p>JanusGraph区分本地和全局配置选项。本地配置选项适用于单个JanusGraph实例。全局配置选项适用于群集中的所有实例。更具体地说，JanusGraph区分了以下五个配置选项范围：</p>
+<ul>
+<li>LOCAL：这些选项仅适用于单个JanusGraph实例，并在初始化JanusGraph实例时提供的配置中指定。</li>
+<li>MASKABLE：可以通过本地配置文件为单个JanusGraph实例覆盖这些配置选项。如果本地配置文件未指定该选项，则从全局JanusGraph集群配置中读取其值。</li>
+<li>GLOBAL：始终从群集配置中读取这些选项，并且不能在实例的基础上覆盖这些选项。</li>
+<li>GLOBAL_OFFLINE：与GLOBAL一样，但更改这些选项需要重新启动群集以确保整个群集中的值相同。</li>
+<li>FIXED：与GLOBAL一样，但是一旦初始化JanusGraph集群，就无法更改该值。</li>
+</ul>
+<p>启动集群中的第一个JanusGraph实例时，将从提供的本地配置文件初始化全局配置选项。随后，通过JanusGraph的管理API完成更改全局配置选项。要访问管理API，请在打开的JanusGraph实例句柄g上调用g.getManagementSystem()。例如，要更改JanusGraph集群上的默认缓存行为：</p>
+<pre><code>mgmt = graph.openManagement()
+mgmt.get('cache.db-cache')
+// Prints the current config setting
+mgmt.set('cache.db-cache', true)
+// Changes option
+mgmt.get('cache.db-cache')
+// Prints 'true'
+mgmt.commit()
+// Changes take effect
+</code></pre>
+<h3 id="431">4.3.1. 离线选项配置</h3>
+<p>更改配置选项不会影响正在运行的实例，仅适用于新启动的实例。 更改GLOBAL_OFFLINE配置选项需要重新启动集群，以使更改立即对所有实例生效。 要更改GLOBAL_OFFLINE选项，请按以下步骤操作：</p>
+<ul>
+<li>关闭集群中除一个JanusGraph实例外的所有实例</li>
+<li>连接到单个实例</li>
+<li>确保关闭所有正在运行的事务</li>
+<li>确保没有启动新事务（即群集必须脱机）</li>
+<li>打开管理API</li>
+<li>更改配置选项</li>
+<li>调用commit将自动关闭图形实例</li>
+<li>重启所有实例</li>
+</ul>
+<p>有关更多信息（包括每个选项的配置范围），请参阅第15章“配置参考”中的完整配置选项列表。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../schema_and_data_modeling/" class="btn btn-neutral float-right" title="5.数据实例和数据模型">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../introduction/getting_started/" class="btn btn-neutral" title="3.开始"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../introduction/getting_started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../schema_and_data_modeling/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
