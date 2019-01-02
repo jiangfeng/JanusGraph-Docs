@@ -3,7 +3,7 @@ site_author: FinSightRD
 
 
 nav:
-- Home: index.md
+- 首页: index.md
 - I.介绍: 
   - 1.JanusGraph优势: ./introduction/the_benefits_of_janusgraph.md
   - 2.架构总览: ./introduction/architectural_overview.md
@@ -13,7 +13,7 @@ nav:
   - 4.基本配置: ./janusgraph_basics/configuration.md
   - 5.数据实例和数据模型: ./janusgraph_basics/schema_and_data_modeling.md
   - 6.Gremin查询语言: ./janusgraph_basics/gremlin_query_language.md
-  - 7.JanusGraph服务端: ./janusgraph_basics/janusgraph_server.md
+  - 7.JanusGraph服务: ./janusgraph_basics/janusgraph_server.md
   - 8.部署方案: ./janusgraph_basics/deployment_scenarios.md
   - 9.配置图工厂: ./janusgraph_basics/configuredgraphfactory.md
   - 10.多节点JanusGraph集群中需要考虑的事项: ./janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster.md
