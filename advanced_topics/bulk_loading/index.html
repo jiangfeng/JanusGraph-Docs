@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>34.批量加载 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "34.\u6279\u91cf\u52a0\u8f7d";
+    var mkdocs_page_input_path = "advanced_topics/bulk_loading.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I. 介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II. Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III. 存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/inmemory_storage_backend/">22.内存存储后端</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_management/">33.索引管理</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">34.批量加载</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#34">34、 批量加载</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#341">34.1 配置选项</a></li>
+        
+            <li><a class="toctree-l4" href="#342">34.2 策略</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>V. 高级特性 &raquo;</li>
+        
+      
+    
+    <li>34.批量加载</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="34">34、 批量加载</h2>
+<p>有许多配置选项和工具可以更有效地将大量图形数据提取到JanusGraph中。与通过单个事务添加少量数据的默认事务加载相比，这种提取被称为批量加载。
+有许多用例将数据批量加载到JanusGraph中，包括：
+- 将JanusGraph引入具有现有数据的现有环境，并将此数据迁移或复制到新的JanusGraph集群中。
+- 使用JanusGraph作为ETL过程的终点。
+- 将现有或外部图形数据集（例如，公开可用的RDF数据集）添加到正在运行的JanusGraph集群。
+- 使用图表分析作业的结果更新JanusGraph图表。</p>
+<p>本页介绍了在JanusGraph中使批量加载更高效的配置选项和工具。在继续操作之前，请仔细观察每个选项的限制和假设，以避免数据丢失或数据损坏。</p>
+<p>本文档重点介绍JanusGraph的具体优化。此外，考虑改进所选的存储后端和（可选）索引后端以实现高写入性能。有关更多信息，请参阅相应后端的文档。</p>
+<h3 id="341">34.1 配置选项</h3>
+<h4 id="3411">34.1.1 批量加载</h4>
+<p>storage.batch-loading对大多数应用程序而言，启用配置选项将对批量加载时间产生最大的积极影响。启用批量加载会在许多地方禁用JanusGraph内部一致性检查。最重要的是，它禁用锁定。换句话说，JanusGraph假设要加载到JanusGraph中的数据与图形一致，因此为了提高性能而禁用自己的检查。</p>
+<p>在许多批量加载方案中，在加载数据之前确保数据一致性然后在将数据加载到数据库中时确保数据一致性要便宜得多。storage.batch-loading由于此观察，配置选项存在。</p>
+<p>在许多批量加载场景中，在加载数据之前确保数据一致性要比在将数据加载到数据库时确保数据一致性便宜得多。由于此观察storage.batch-loading，配置选项存在。</p>
+<p>例如，考虑将现有用户配置文件批量加载到JanusGraph中的用例。此外，假设用户名属性键具有在其上定义的唯一复合索引，即用户名在整个图形中必须是唯一的。如果从其他数据库导入用户配置文件，则可能已保证用户名唯一性。如果没有，则按名称对配置文件进行排序并过滤掉重复项或编写执行此类过滤的Hadoop作业很简单。现在，我们可以启用storage.batch-loading哪个显着减少批量加载时间，因为JanusGraph不必检查每个添加的用户是否该名称已存在于数据库中。</p>
+<p>要点：启用storage.batch-loading要求用户确保加载的数据在内部一致且与图中已有的任何数据一致。特别是，在启用批量加载时，并发类型创建可能会导致严重的数据完整性问题。因此，我们强烈建议您通过schema.default = none在图表配置中进行设置来禁用自动类型创建。</p>
+<h4 id="3412-id">34.1.2 优化ID分配</h4>
+<h5 id="34121-id">34.1.2.1 ID块大小</h5>
+<p>每个新添加的顶点或边缘都被分配一个惟一的id。JanusGraph的id池管理器为特定的JanusGraph实例获取块中的id。id块获取过程代价高昂，因为它需要保证块的全局惟一分配。增加id块大小减少了获取的数量，但可能会留下许多id未分配，从而造成浪费。对于事务性工作负载，默认的块大小是合理的，但在批量加载期间，顶点和边的添加频率要高得多，而且速度也快得多。因此，通常建议根据每台机器要添加的顶点数量将块大小增加10倍或更多。</p>
+<p>经验法则：设置ids.block-size为每小时每个JanusGraph实例添加的顶点数。</p>
+<p>重要提示：所有JanusGraph实例必须配置相同的ids.block-size值以确保正确的id分配。因此，在更改此值之前，请务必关闭所有JanusGraph实例。</p>
+<h5 id="34122">34.1.2.2 身份识别获取流程</h5>
+<p>当许多JanusGraph实例经常并行分配id块时，实例之间的分配冲突将不可避免地出现并减慢分配过程。此外，由于批量加载而增加的写入负载可能会进一步减慢进程，使得JanusGraph认为它失败并抛出异常。有三种配置选项可以调整以避免这种情况。</p>
+<p>1）ids.authority.wait-time配置id池管理器等待存储后端确认id块应用程序的时间（以毫秒为单位）。此时间越短，应用程序在拥塞的存储群集上失败的可能性就越大。</p>
+<p>经验法则：将此值设置为加载时存储后端群集上测量的95%读取和写入时间的总和。 重要提示：所有JanusGraph实例的值都应相同。</p>
+<p>2）ids.renew-timeout配置JanusGraph的id池管理器在尝试获取失败前的新id块时将等待的毫秒数。</p>
+<p>经验法则：将此值设置为尽可能大，以便不必等待太长时间以应对不可恢复的故障。增加它的唯一缺点是JanusGraph将在不可用的存储后端群集上尝试很长时间。</p>
+<h4 id="3413">34.1.3 优化写入和读取</h4>
+<h5 id="34131">34.1.3.1 缓冲区大小</h5>
+<p>JanusGraph缓冲写入并以小批量执行它们以减少针对存储后端的请求数。这些批次的大小由storage.buffer-size。在短时间内执行大量写入时，存储后端可能会因写入请求而过载。在这种情况下，增加storage.buffer-size可以通过增加每个请求的写入次数来避免失败，从而减少请求的数量。</p>
+<p>但是，增加缓冲区大小会增加写请求的延迟及其失败的可能性。因此，不建议为事务性负载增加此设置，并且应在批量加载期间仔细尝试此设置。</p>
+<h5 id="34132">34.1.3.2 读写稳健性</h5>
+<p>在批量加载期间，群集上的负载通常会增加，从而使读取和写入操作更有可能失败（特别是如果缓冲区大小如上所述增加）。 storage.read-attempts并storage.write-attempts配置JanusGraph在放弃之前尝试对存储后端执行读取或写入操作的次数。如果预计在批量加载期间后端有高负载，通常建议增加这些配置选项。</p>
+<p>storage.attempt-wait指定JanusGraph在重新尝试失败的后端操作之前将等待的毫秒数。较高的值可以确保操作重试不会进一步增加后端的负载。</p>
+<h3 id="342">34.2 策略</h3>
+<h4 id="3421">34.2.1 并行化负载</h4>
+<p>如果JanusGraph的存储后端群集足够大以满足其他请求,通过并行处理跨多台计算机的批量加载，则可以大大减少加载时间。这基本上是方法<a href="https://docs.janusgraph.org/latest/hadoop-tp3.html">第37章，JanusGraph和TinkerPop的Hadoop-Gremlin</a>使用MapReduce将数据批量加载到JanusGraph中。</p>
+<p>如果Hadoop不能用于并行化批量加载过程，那么以下是一些有效并行化加载过程的高级指南：</p>
+<ul>
+<li>在某些情况下，图表数据可以分解为多个断开连接的子图。这些子图可以在多台机器上并行独立加载（例如，如上所述使用BatchGraph）。</li>
+<li>如果无法分解图形，则在多个步骤中加载通常是有益的，其中最后两个步骤可以跨多个机器并行化：<ol>
+<li>确保顶点和边缘数据集是重复数据删除且一致的。</li>
+<li>设置batch-loading=true。可能优化上述附加配置设置。</li>
+<li>将所有顶点及其属性添加到图形中（但没有边缘）。维护一个（分布式）映射，从顶点id（由加载的数据定义）到JanusGraph的内部顶点id（即vertex.getId()），这是一个64位长的id。</li>
+<li>使用地图添加所有边以查找JanusGraph的顶点id并使用该id检索顶点。</li>
+</ol>
+</li>
+</ul>
+<p>34.3 问与答</p>
+<ul>
+<li>在批量加载期间，我该怎么做才能避免以下异常： java.io.IOException: ID renewal thread on partition [X] did not complete in time.？此异常很可能是由于高度压缩的存储后端在id分配阶段重复超时造成的。请参阅上面的 ID分配优化部分。</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../graph_partitioning/" class="btn btn-neutral float-right" title="35.图分区">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../index_management/" class="btn btn-neutral" title="33.索引管理"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../index_management/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../graph_partitioning/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

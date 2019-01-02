@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>3.开始 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "3.\u5f00\u59cb";
+    var mkdocs_page_input_path = "introduction/getting_started.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I. 介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../architectural_overview/">2.架构总览</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">3.开始</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#3">3. 快速开始</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#31-janusgraphgremlin">3.1. 下载JanusGraph和运行Gremlin控制台</a></li>
+        
+            <li><a class="toctree-l4" href="#32-godsjanusgraph">3.2. 将Gods的图关系导入到JanusGraph</a></li>
+        
+            <li><a class="toctree-l4" href="#33">3.3. 全局图索引</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II. Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III. 存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/inmemory_storage_backend/">22.内存存储后端</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>I. 介绍 &raquo;</li>
+        
+      
+    
+    <li>3.开始</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="3">3. 快速开始</h1>
+<p>图3.1 神的图关系
+<img alt="graph-of-the-gods-2" src="../../img/graph-of-the-gods-2.png" />
+<em>Above: Cupcake indexer in progress</em></p>
+<h2 id="31-janusgraphgremlin">3.1. 下载JanusGraph和运行Gremlin控制台</h2>
+<p>JanusGraph可以从项目仓库中下载一个发布的<a href="https://github.com/JanusGraph/janusgraph/releases" target="_blank">版本</a> 一旦下载并解压，一个Gremlin的控制台就可以打开。Gremlin控制台是与JanusGraph一起分发的<a href="http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>（即交互式shell），并且仅与标准Gremlin控制台不同，因为JanusGraph是预先安装和预加载的包。或者，用户可以通过从中央存储库下载JanusGraph包来选择在现有的Gremlin控制台中安装和激活JanusGraph。但是，在下面的示例中，使用了 janusgraph.zip，请确保解压缩了下载的zip文件。</p>
+<blockquote>
+<p><em>重要: JanusGraph依赖Java8（标准版）。建议使用Oracle Java 8。JanusGraph的shell脚本希望$JAVA_HOME环境变量指向安装JRE或JDK的目录。</em></p>
+</blockquote>
+<pre><code>    $ unzip janusgraph-0.3.1-hadoop2.zip
+    Archive:  janusgraph-0.3.1-hadoop2.zip
+    creating: janusgraph-0.3.1-hadoop2/
+    ...
+    $ cd janusgraph-0.3.1-hadoop2
+    $ bin/gremlin.sh
+
+        \,,,/
+        (o o)
+    -----oOOo-(3)-oOOo-----
+    09:12:24 INFO  org.apache.tinkerpop.gremlin.hadoop.structure.HadoopGraph  - HADOOP_GREMLIN_LIBS is set to: /usr/local/janusgraph/lib
+    plugin activated: tinkerpop.hadoop
+    plugin activated: janusgraph.imports
+    gremlin&gt;
+</code></pre>
+<p>Gremlin控制台使用<a href="http://www.groovy-lang.org/">Apache Groovy</a>解释命令。Groovy是Java的超集，它具有各种简化标记，使交互编程更容易。同样地，Gremlin-Groovy是Groovy的超集，具有各种速记符号，使图形遍历变得容易。下面的基本示例演示处理数字、字符串和映射。本教程的其余部分将讨论特定于图形的构造。</p>
+<pre><code>    gremlin&gt; 100-10
+    ==&gt;90
+    gremlin&gt; "JanusGraph:" + " The Rise of Big Graph Data"
+    ==&gt;JanusGraph: The Rise of Big Graph Data
+    gremlin&gt; [name:'aurelius', vocation:['philosopher', 'emperor']]
+    ==&gt;name=aurelius
+    ==&gt;vocation=[philosopher, emperor]
+</code></pre>
+<blockquote>
+<p>提示</p>
+<p>关于<a href="http://tinkerpop.apache.org/docs/3.3.3/reference">Apache Tinkerpop</a>,<a href="http://sql2gremlin.com/">SQLEGremlin</a>和<a href="http://tinkerpop.apache.org/docs/3.3.3/recipes/">Gremlin Recipes</a>的更多Gremlin的使用信息。</p>
+</blockquote>
+<h2 id="32-godsjanusgraph">3.2. 将Gods的图关系导入到JanusGraph</h2>
+<p>下面的示例将打开一个JanusGraph图形实例，并加载上面所示的Gods数据集的图。JanusGraphFactory提供了一组静态打开方法，每个方法都采用配置作为参数，并返回一个图形实例。本教程在使用BerkeleyDB存储后端和Elasticsearch索引后端的配置上调用这些开放方法，然后使用帮助类GraphOfTheGodsFactory加载Gods的图。本节跳过配置细节，但是关于存储后端、索引后端及其配置的附加信息可在Part III,“存储后端”、Part IV“索引后端”和第15章“配置参考”中获得。</p>
+<pre><code>gremlin&gt; graph = JanusGraphFactory.open('conf/janusgraph-berkeleyje-es.properties')
+==&gt;standardjanusgraph[berkeleyje:../db/berkeley]
+gremlin&gt; GraphOfTheGodsFactory.load(graph)
+==&gt;null
+gremlin&gt; g = graph.traversal()
+==&gt;graphtraversalsource[standardjanusgraph[berkeleyje:../db/berkeley], standard]
+</code></pre>
+<p>在返回新构造的图之前，JanusGraphFactory.open()和GraphOfTheGodsFactory.load()方法执行以下操作：</p>
+<ol>
+<li>在图上创建全局和顶点中心索引集合。</li>
+<li>将所有顶点添加到图形以及它们的属性。</li>
+<li>将所有的边加上它们的属性。</li>
+</ol>
+<p>详情请参阅<a href="https://github.com/JanusGraph/janusgraph/blob/master/janusgraph-core/src/main/java/org/janusgraph/example/GraphOfTheGodsFactory.java">GraphOfTheGodsFactory source code</a>源代码。</p>
+<p>对于那些使用JanusGraph/Cassandra（或JanusGraph/HBase）的用户，请确保使用conf/janus.-cql-es.properties（或conf/janus.-hbase-es.properties）和GraphOfTheGodsFactory.load()。</p>
+<pre><code>gremlin&gt; graph = JanusGraphFactory.open('conf/janusgraph-cql-es.properties')
+==&gt;standardjanusgraph[cql:[127.0.0.1]]
+gremlin&gt; GraphOfTheGodsFactory.load(graph)
+==&gt;null
+gremlin&gt; g = graph.traversal()
+==&gt;graphtraversalsource[standardjanusgraph[cql:[127.0.0.1]], standard]
+</code></pre>
+<h2 id="33">3.3. 全局图索引</h2>
+<p>访问图形数据库中数据的典型模式是首先使用图形索引定位到图形中的入口点。该入口点是元素（或一组元素）-即顶点或边。从条目元素中，Gremlin路径描述描述了如何通过显式图结构遍历到图中的其他元素。</p>
+<p>给定name属性上有一个唯一的索引，可以检索Saturn顶点。然后可以检查属性映射（即Saturn的密钥/值对）。正如所展示的，土星顶点的名字是“Saturn”，年龄为10000岁，是一种“titan”。Saturn的孙子可以通过一个遍历表述：“谁是Saturn的孙子？”“父亲”的倒数是“孩子”。结果就是Hercules。</p>
+<pre><code>gremlin&gt; saturn = g.V().has('name', 'saturn').next()
+==&gt;v[256]
+gremlin&gt; g.V(saturn).valueMap()
+==&gt;[name:[saturn], age:[10000]]
+gremlin&gt; g.V(saturn).in('father').in('father').values('name')
+==&gt;hercules
+</code></pre>
+<p>属性位置也在图形索引中。属性位置是一个边属性。因此，JanusGraph可以索引图索引中的边。可以查询在雅典50公里内发生的所有事件（纬度：37.97和长度：23.72）。然后，给定这些信息，哪些顶点参与了这些事件。</p>
+<pre><code>gremlin&gt; g.E().has('place', geoWithin(Geoshape.circle(37.97, 23.72, 50)))
+==&gt;e[a9x-co8-9hx-39s][16424-battled-&gt;4240]
+==&gt;e[9vp-co8-9hx-9ns][16424-battled-&gt;12520]
+gremlin&gt; g.E().has('place', geoWithin(Geoshape.circle(37.97, 23.72, 50))).as('source').inV().as('god2').select('source').outV().as('god1').select('god1', 'god2').by('name')
+==&gt;[god1:hercules, god2:hydra]
+==&gt;[god1:hercules, god2:nemean]
+</code></pre>
+<p>图索引是JanusGraph中的一种索引结构。JanusGraph自动选择图形索引，以回答要求满足一个或多个约束（例如有或间隔）的所有顶点（g.V）或所有边（g.E）的问题。anusGraph中索引的第二个方面被称为顶点中心索引。顶点中心指数用于加速图中的遍历。稍后将描述顶点中心指数。</p>
+<h3 id="331">3.3.1 图遍历实例</h3>
+<blockquote>
+<p>Hercules，Jupiter和Alcmene的儿子，“蕴藏着超人的力量”。Hercules是个Demigod(半神)，因为他的父亲是God，他的母亲是人类。Juno，Jupiter的妻子，对Jupiter的不忠感到愤怒。为了报仇，她用暂时的精神错乱蒙蔽了Hercules，并导致他杀死他的妻子和孩子。为了赎罪， Oracle of Delphi的神谕命令Hercules为Eurystheus服务。Eurystheus指派给Hercules为12名劳工。</p>
+</blockquote>
+<p>在上一节中，它证明了Saturn的孙子是Hercules。这可以用一个循环来表示。本质上，Hercules是沿着“父亲”路径离开Hercules2步的顶点。</p>
+<pre><code>gremlin&gt; hercules = g.V(saturn).repeat(__.in('father')).times(2).next()
+==&gt;v[1536]
+</code></pre>
+<p>Hercules是demigod(半神半人)。为了证明Hercules是半人半神，他父母的起源必须加以考证。有可能从Hercules顶点到他的父母。最后，可以确定它们分别产生“神”和“人”的类型。</p>
+<pre><code> gremlin&gt; g.V(hercules).out('father', 'mother')
+ ==&gt;v[1024]
+ ==&gt;v[1792]
+ gremlin&gt; g.V(hercules).out('father', 'mother').values('name')
+ ==&gt;jupiter
+ ==&gt;alcmene
+ gremlin&gt; g.V(hercules).out('father', 'mother').label()
+ ==&gt;god
+ ==&gt;human
+ gremlin&gt; hercules.label()
+ ==&gt;demigod
+</code></pre>
+<p>迄今为止的例子是关于罗马万神殿中各种角色的基因谱系。<a href="http://tinkerpop.apache.org/docs/3.3.3/reference#intro">属性图模型</a>具有足够的表达能力，可以表示多种类型的事物和关系。通过这种方式，《神图》还确定了Hercules的各种英勇事迹——他著名的12项劳动。在上一节中，人们发现Hercules参与了雅典附近的两场战役。通过穿越Hercules顶点之外的战斗边缘，有可能探索这些事件。</p>
+<pre><code>gremlin&gt; g.V(hercules).out('battled')
+==&gt;v[2304]
+==&gt;v[2560]
+==&gt;v[2816]
+gremlin&gt; g.V(hercules).out('battled').valueMap()
+==&gt;[name:[nemean]]
+==&gt;[name:[hydra]]
+==&gt;[name:[cerberus]]
+gremlin&gt; g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name')
+==&gt;cerberus
+==&gt;hydra
+</code></pre>
+<p>战斗边的属性time由一个顶点的vertex-centric指数索引。根据约束/滤波器按时检索入射到Hercules的战斗边缘比进行所有边缘的线性扫描和滤波(通常为O(log n)，其中n是入射边的数目)要快。JanusGraph足够智能，可以在使用时使用顶点中心索引。Gremlin表达式的toString()显示分解为各个步骤。</p>
+<pre><code>gremlin&gt; g.V(hercules).outE('battled').has('time', gt(1)).inV().values('name').toString()
+==&gt;[GraphStep([v[24744]],vertex), VertexStep(OUT,[battled],edge), HasStep([time.gt(1)]), EdgeVertexStep
+</code></pre>
+<h3 id="332">3.3.2 更复杂的图遍历示例</h3>
+<p>冥府深处的冥王星。他与Hercules的关系因Hercules与他的宠物Cerberus搏斗而紧张。然而，Hercules是他的侄子，他应该如何让Hercules为他的傲慢付出代价？
+下面的Gremlin遍历在Gods的图上提供更多的例子。每个遍历的解释在先前行中提供为a//注释。</p>
+<h4 id="3321-tartarus">3.3.2.1 Tartarus的同居者</h4>
+<pre><code>gremlin&gt; pluto = g.V().has('name', 'pluto').next()
+==&gt;v[2048]
+gremlin&gt; // who are pluto's cohabitants?
+gremlin&gt; g.V(pluto).out('lives').in('lives').values('name')
+==&gt;pluto
+==&gt;cerberus
+gremlin&gt; // pluto can't be his own cohabitant
+gremlin&gt; g.V(pluto).out('lives').in('lives').where(is(neq(pluto))).values('name')
+==&gt;cerberus
+gremlin&gt; g.V(pluto).as('x').out('lives').in('lives').where(neq('x')).values('name')
+==&gt;cerberus
+</code></pre>
+<h4 id="3322-pluto">3.3.2.2. Pluto的兄弟</h4>
+<pre><code>gremlin&gt; // where do pluto's brothers live?
+gremlin&gt; g.V(pluto).out('brother').out('lives').values('name')
+==&gt;sky
+==&gt;sea
+gremlin&gt; // which brother lives in which place?
+gremlin&gt; g.V(pluto).out('brother').as('god').out('lives').as('place').select('god', 'place')
+==&gt;[god:v[1024], place:v[512]]
+==&gt;[god:v[1280], place:v[768]]
+gremlin&gt; // what is the name of the brother and the name of the place?
+gremlin&gt; g.V(pluto).out('brother').as('god').out('lives').as('place').select('god', 'place').by('name')
+==&gt;[god:jupiter, place:sky]
+==&gt;[god:neptune, place:sea]
+</code></pre>
+<p>最后，冥王星(pluto)生活在Tartarus，因为他不关心生死。另一方面，他的兄弟们基于对那些地方某些品质的爱来选择他们的位置</p>
+<pre><code>gremlin&gt; g.V(pluto).outE('lives').values('reason')
+==&gt;no fear of death
+gremlin&gt; g.E().has('reason', textContains('loves'))
+==&gt;e[6xs-sg-m51-e8][1024-lives-&gt;512]
+==&gt;e[70g-zk-m51-lc][1280-lives-&gt;768]
+gremlin&gt; g.E().has('reason', textContains('loves')).as('source').values('reason').as('reason').select('source').outV().values('name').as('god').select('source').inV().values('name').as('thing').select('god', 'reason', 'thing')
+==&gt;[god:neptune, reason:loves waves, thing:sea]
+==&gt;[god:jupiter, reason:loves fresh breezes, thing:sky]
+</code></pre>
+<p>本节概述JanusGraph的架构和优点，然后使用小教程数据集快速浏览JanusGraph特性。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../janusgraph_basics/configuration/" class="btn btn-neutral float-right" title="4.基本配置">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../architectural_overview/" class="btn btn-neutral" title="2.架构总览"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../architectural_overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../janusgraph_basics/configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

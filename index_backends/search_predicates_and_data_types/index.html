@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>23.查询语法和数据类型 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "23.\u67e5\u8be2\u8bed\u6cd5\u548c\u6570\u636e\u7c7b\u578b";
+    var mkdocs_page_input_path = "index_backends/search_predicates_and_data_types.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I. 介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II. Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III. 存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/inmemory_storage_backend/">22.内存存储后端</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">23.查询语法和数据类型</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#23">23章 搜索谓词和数据类型</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#231">23.1 比较谓词</a></li>
+        
+            <li><a class="toctree-l4" href="#232">23.2 文本谓词</a></li>
+        
+            <li><a class="toctree-l4" href="#233">23.3 地理谓词</a></li>
+        
+            <li><a class="toctree-l4" href="#235">23.5 支持数据类型</a></li>
+        
+            <li><a class="toctree-l4" href="#236">23.6 地理位置数据类型</a></li>
+        
+            <li><a class="toctree-l4" href="#237">23.7 集合</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>IV. 后端索引 &raquo;</li>
+        
+      
+    
+    <li>23.查询语法和数据类型</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="23">23章 搜索谓词和数据类型</h2>
+<p>这个页面列出了所有的比较谓词JanusGraph支持全局图搜索和局部遍历。</p>
+<h3 id="231">23.1 比较谓词</h3>
+<p>下列比较谓词，枚举了用于索引查询并在上面的示例中使用：<br />
+- eq (equal)
+- neq (not equal)
+- gt (greater than)
+- gte (greater than or equal)
+- lt (less than)
+- lte (less than or equal)</p>
+<p>所有的比较谓词致辞String,numeric,Date和即时的数据类型。
+boolean和uuid支持neq和eq</p>
+<h3 id="232">23.2 文本谓词</h3>
+<p>Text枚举指定用于查询匹配文本或字符串值的搜索操作符。两种类型谓词区别：</p>
+<ul>
+<li>
+<p>文本搜索谓词在文本字符串被标记化后与文本字符串中的单个单词匹配。这些谓词不区分大小写。</p>
+</li>
+<li>
+<p>textContains：如果（至少）文本字符串中的一个单词与查询字符串匹配，则为true</p>
+</li>
+<li>textContainsPrefix：如果（至少）文本字符串中的一个单词以查询字符串开头，则为true</li>
+<li>textContainsRegex：如果（至少）文本字符串中的一个单词与给定的正则表达式匹配，则为true</li>
+<li>textContainsFuzzy：如果（至少）文本字符串中的一个单词与查询字符串相似（基于Levenshtein编辑距离），则为true</li>
+<li>
+<p>字符串搜索谓词与整个字符串值匹配</p>
+</li>
+<li>
+<p>textPrefix：如果字符串值以给定的查询字符串开头</p>
+</li>
+<li>textRegex：如果字符串值与给定的正则表达式完全匹配</li>
+<li>textFuzzy：如果字符串值类似于给定的查询字符串（基于Levenshtein编辑距离）  </li>
+</ul>
+<blockquote>
+<p>有关全文和字符串搜索的更多信息，请参见第24.1节“全文搜索”。</p>
+</blockquote>
+<h3 id="233">23.3 地理谓词</h3>
+<p>下面列举了地理谓词：
+- geoIntersect如果两个几何对象具有至少一个共同点（相反geoDisjoint），则这是正确的。
+- geoWithin 如果一个几何对象包含另一个几何对象，则成立
+- geoDisjoint如果两个几何对象没有共同的点（相反geoIntersect），则这是正确的。
+- geoContains 如果一个几何对象被另一个包含，则该方法成立。</p>
+<blockquote>
+<p>有关地理搜索的详细信息，请参见第24.2节“地理映射”。
+ ### 23.4 查询示例</p>
+</blockquote>
+<p>以下查询示例演示了教程上的一些谓词:</p>
+<pre><code>g.V().has(&quot;name&quot;, &quot;hercules&quot;)
+// 2) Find all vertices with an age greater than 50
+g.V().has(&quot;age&quot;, gt(50))
+// or find all vertices between 1000 (inclusive) and 5000 (exclusive) years of age and order by increasing age
+g.V().has(&quot;age&quot;, inside(1000, 5000)).order().by(&quot;age&quot;, incr)
+// which returns the same result set as the following query but in reverse order
+g.V().has(&quot;age&quot;, inside(1000, 5000)).order().by(&quot;age&quot;, decr)
+// 3) Find all edges where the place is at most 50 kilometers from the given latitude-longitude pair
+g.E().has(&quot;place&quot;, geoWithin(Geoshape.circle(37.97, 23.72, 50)))
+// 4) Find all edges where reason contains the word &quot;loves&quot;
+g.E().has(&quot;reason&quot;, textContains(&quot;loves&quot;))
+// or all edges which contain two words (need to chunk into individual words)
+g.E().has(&quot;reason&quot;, textContains(&quot;loves&quot;)).has(&quot;reason&quot;, textContains(&quot;breezes&quot;))
+// or all edges which contain words that start with &quot;lov&quot;
+g.E().has(&quot;reason&quot;, textContainsPrefix(&quot;lov&quot;))
+// or all edges which contain words that match the regular expression &quot;br[ez]*s&quot; in their entirety
+g.E().has(&quot;reason&quot;, textContainsRegex(&quot;br[ez]*s&quot;))
+// or all edges which contain words similar to &quot;love&quot;
+g.E().has(&quot;reason&quot;, textContainsFuzzy(&quot;love&quot;))
+// 5) Find all vertices older than a thousand years and named &quot;saturn&quot;
+g.V().has(&quot;age&quot;, gt(1000)).has(&quot;name&quot;, &quot;saturn&quot;)
+</code></pre>
+
+<h3 id="235">23.5 支持数据类型</h3>
+<p>虽然JanusGraph的复合索引（composite indexes）支持可以存储在JanusGraph中的任何数据类型，
+但混合索引（mixed indexes ）仅限于以下数据类型。</p>
+<ul>
+<li>Byte</li>
+<li>Short</li>
+<li>Integer</li>
+<li>Long</li>
+<li>Float</li>
+<li>Double</li>
+<li>String</li>
+<li>Geoshape</li>
+<li>Date</li>
+<li>Instant</li>
+<li>UUID</li>
+</ul>
+<p>将来将支持其他数据类型。</p>
+<h3 id="236">23.6 地理位置数据类型</h3>
+<p>Geoshape数据类型支持表示点，圆，框，线，多边形，多点，多线和多边形。索引后端目前支持索引点，圆，框，线，多边形，多点，
+多线，多边形和几何集合。仅通过混合索引支持地理空间索引查找。  </p>
+<p>要构建Geoshape，请使用以下方法：  </p>
+<pre><code>//lat, lng
+Geoshape.point(37.97, 23.72)
+//lat, lng, radius in km
+Geoshape.circle(37.97, 23.72, 50)
+//SW lat, SW lng, NE lat, NE lng
+Geoshape.box(37.97, 23.72, 38.97, 24.72)
+//WKT
+Geoshape.fromWkt(&quot;POLYGON ((35.4 48.9, 35.6 48.9, 35.6 49.1, 35.4 49.1, 35.4 48.9))&quot;)
+//MultiPoint
+Geoshape.geoshape(Geoshape.getShapeFactory().multiPoint().pointXY(60.0, 60.0).pointXY(120.0, 60.0)
+  .build())
+//MultiLine
+Geoshape.geoshape(Geoshape.getShapeFactory().multiLineString()
+  .add(Geoshape.getShapeFactory().lineString().pointXY(59.0, 60.0).pointXY(61.0, 60.0))
+  .add(Geoshape.getShapeFactory().lineString().pointXY(119.0, 60.0).pointXY(121.0, 60.0)).build())
+//MultiPolygon
+Geoshape.geoshape(Geoshape.getShapeFactory().multiPolygon()
+  .add(Geoshape.getShapeFactory().polygon().pointXY(59.0, 59.0).pointXY(61.0, 59.0)
+    .pointXY(61.0, 61.0).pointXY(59.0, 61.0).pointXY(59.0, 59.0))
+  .add(Geoshape.getShapeFactory().polygon().pointXY(119.0, 59.0).pointXY(121.0, 59.0)
+    .pointXY(121.0, 61.0).pointXY(119.0, 61.0).pointXY(119.0, 59.0)).build())
+//GeometryCollection
+Geoshape.geoshape(Geoshape.getGeometryCollectionBuilder()
+  .add(Geoshape.getShapeFactory().pointXY(60.0, 60.0))
+  .add(Geoshape.getShapeFactory().lineString().pointXY(119.0, 60.0).pointXY(121.0, 60.0).build())
+  .add(Geoshape.getShapeFactory().polygon().pointXY(119.0, 59.0).pointXY(121.0, 59.0)
+    .pointXY(121.0, 61.0).pointXY(119.0, 61.0).pointXY(119.0, 59.0)).build())
+</code></pre>
+
+<p>此外，通过GraphSON导入图形时，几何体可能由GeoJSON表示：</p>
+<pre><code>//string
+&quot;37.97, 23.72&quot;
+//list
+[37.97, 23.72]
+//GeoJSON feature
+{
+  &quot;type&quot;: &quot;Feature&quot;,
+  &quot;geometry&quot;: {
+    &quot;type&quot;: &quot;Point&quot;,
+    &quot;coordinates&quot;: [125.6, 10.1]
+  },
+  &quot;properties&quot;: {
+    &quot;name&quot;: &quot;Dinagat Islands&quot;
+  }
+}
+//GeoJSON geometry
+{
+  &quot;type&quot;: &quot;Point&quot;,
+  &quot;coordinates&quot;: [125.6, 10.1]
+}
+</code></pre>
+
+<p>GeoJSON可以指定为Point，Circle，LineString或Polygon。多边形必须关闭。请注意，
+与JanusGraph API不同，GeoJSON将坐标指定为lng lat。</p>
+<h3 id="237">23.7 集合</h3>
+<p>如果您使用的是Elasticsearch，则可以使用SET和LIST基数对属性进行索引。例如：</p>
+<pre><code>mgmt = graph.openManagement()
+nameProperty = mgmt.makePropertyKey(&quot;names&quot;).dataType(String.class).cardinality(Cardinality.SET).make()
+mgmt.buildIndex(&quot;search&quot;, Vertex.class).addKey(nameProperty, Mapping.STRING.asParameter()).buildMixedIndex(&quot;search&quot;)
+mgmt.commit()
+//Insert a vertex
+person = graph.addVertex()
+person.property(&quot;names&quot;, &quot;Robert&quot;)
+person.property(&quot;names&quot;, &quot;Bob&quot;)
+graph.tx().commit()
+//Now query it
+g.V().has(&quot;names&quot;, &quot;Bob&quot;).count().next() //1
+g.V().has(&quot;names&quot;, &quot;Robert&quot;).count().next() //1
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../index_parameters_and_full-text_search/" class="btn btn-neutral float-right" title="24.索引参数和全文搜索">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../storage_backend/inmemory_storage_backend/" class="btn btn-neutral" title="22.内存存储后端"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../storage_backend/inmemory_storage_backend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../index_parameters_and_full-text_search/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>19.Apache Hbase - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "19.Apache Hbase";
+    var mkdocs_page_input_path = "storage_backend/apache_hbase.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I. 介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II. Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III. 存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">19.Apache Hbase</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#19apache-hbase">第19章Apache HBase</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#191-hbase">19.1. HBase设置</a></li>
+        
+            <li><a class="toctree-l4" href="#192hbase">19.2。HBase特定配置</a></li>
+        
+            <li><a class="toctree-l4" href="#193">19.3。全局图操作</a></li>
+        
+            <li><a class="toctree-l4" href="#194hbase">19.4。管理HBase群集的提示和技巧</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../inmemory_storage_backend/">22.内存存储后端</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/advanced_schema/">38.JanusGraph监控</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../advanced_topics/migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>III. 存储后端 &raquo;</li>
+        
+      
+    
+    <li>19.Apache Hbase</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="19apache-hbase"><strong>第19章Apache HBase</strong></h1>
+<p><img alt="hbase_logo" src="http://hbase.apache.org/images/hbase_logo.png" /></p>
+<p>Apache hbase是一个开源的、分布式的、版本化的、非关系数据库。正如BigTable利用Google文件系统提供的分布式数据存储一样，ApacheHBASE在Hadoop和HDFS之上提供了类似BigTable的功能。</p>
+<h2 id="191-hbase">19.1. HBase设置</h2>
+<p>以下部分概述了JanusGraph与Apache HBase协同使用的各种方式。</p>
+<h3 id="1911">19.1.1. 本地服务器模式</h3>
+<p><img alt="modes-local" src="https://docs.janusgraph.org/latest/images/modes-local.png" /></p>
+<p>HBase可以作为独立数据库在与JanusGraph和最终用户应用程序相同的本地主机上运行。在这个模型中，JanusGraph和HBase通过<code>localhost</code>套接字相互通信。在HBase上运行JanusGraph需要以下设置步骤：</p>
+<p>·         从<a href="http://www.apache.org/dyn/closer.cgi/hbase/stable/">http://www.apache.org/dyn/closer.cgi/hbase/stable/</a>下载并提取稳定的HBase 。</p>
+<p>·         通过调用解压缩的HBase目录<code>start-hbase.sh</code>中的<em>bin</em>目录中的脚本来启动HBase 。要停止HBase，请使用<code>stop-hbase.sh</code>。</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting master, logging to ../logs/hbase-master-machine-name.local.out
+</code></pre>
+
+<p>now，您可以创建一个HBASE简图，如下所示：</p>
+<pre><code>JanusGraph graph = JanusGraphFactory.build()
+        .set(&quot;storage.backend&quot;, &quot;hbase&quot;)
+        .open();
+</code></pre>
+
+<p>请注意，由于默认情况下尝试使用localhost连接，因此您无需指定主机名。此外，在Gremlin控制台中，您无法定义变量的类型<code>conf</code>和<code>g</code>。因此，只需省略类型声明即可。</p>
+<h3 id="1912">19.1.2。远程服务器模式</h3>
+<p><img alt="modes-distributed" src="https://docs.janusgraph.org/latest/images/modes-distributed.png" /></p>
+<p>当图形需要超出单个机器的范围时，HBase和JanusGraph在逻辑上分成不同的机器。在此模型中，HBase集群维护图形表示，并且任意数量的JanusGraph实例都维护对HBase集群的基于套接字的读/写访问。最终用户应用程序可以在与JanusGraph相同的JVM中直接与JanusGraph交互。</p>
+<p>例如，假设我们有一个运行的HBase集群，其ZooKeeper仲裁由IP地址为77.77.77.77,77.77.77.78和77.77.77.79的三台机器组成，然后将JanusGraph与集群连接如下：</p>
+<pre><code>JanusGraph g = JanusGraphFactory.build()
+        .set(&quot;storage.backend&quot;, &quot;hbase&quot;)
+        .set(&quot;storage.hostname&quot;, &quot;77.77.77.77, 77.77.77.78, 77.77.77.79&quot;)
+        .open();
+</code></pre>
+
+<p><code>storage.hostname</code>接受以逗号分隔的IP地址列表以及JanusGraph应连接的HBase集群中任何机器子集的主机名。此外，在Gremlin控制台中，您无法定义变量的类型<code>conf</code>和<code>g</code>。因此，只需省略类型声明即可。</p>
+<h3 id="1913gremlin-server">19.1.3。使用Gremlin Server的远程服务器模式</h3>
+<p><img alt="modes-rexster" src="https://docs.janusgraph.org/latest/images/modes-rexster.png" /></p>
+<p>最后，Gremlin Server可以包装在前一小节中定义的每个JanusGraph实例上。通过这种方式，最终用户应用程序不必是基于Java的应用程序，因为它可以作为客户端与Gremlin Server进行通信。这种类型的部署非常适用于多语言体系结构，其中使用不同语言编写的各种组件需要在图形上进行引用和计算。</p>
+<pre><code>http://gremlin-server.janusgraph.machine1/mygraph/vertices/1
+http://gremlin-server.janusgraph.machine2/mygraph/tp/gremlin?script=g.v(1).out('follows').out('created')
+</code></pre>
+
+<p>在这种情况下，每个Gremlin Server都将配置为连接到HBase集群。以下显示了Gremlin Server配置的图形特定片段。有关完整示例以及有关如何配置服务器的详细信息<a href="https://docs.janusgraph.org/latest/server.html">，</a>请参阅<a href="https://docs.janusgraph.org/latest/server.html">第7章</a><em>JanusGraph Server</em>。</p>
+<pre><code>...
+graphs: {
+  g: conf/janusgraph-hbase.properties
+}
+scriptEngines: {
+  gremlin-groovy: {
+    plugins: { org.janusgraph.graphdb.tinkerpop.plugin.JanusGraphGremlinPlugin: {},
+               org.apache.tinkerpop.gremlin.server.jsr223.GremlinServerGremlinPlugin: {},
+               org.apache.tinkerpop.gremlin.tinkergraph.jsr223.TinkerGraphGremlinPlugin: {},
+               org.apache.tinkerpop.gremlin.jsr223.ImportGremlinPlugin: {classImports: [java.lang.Math], methodImports: [java.lang.Math#*]},
+               org.apache.tinkerpop.gremlin.jsr223.ScriptFileGremlinPlugin: {files: [scripts/empty-sample.groovy]}}}}
+...
+...
+</code></pre>
+
+<h2 id="192hbase">19.2。HBase特定配置</h2>
+<p>有关除常规JanusGraph配置选项外的所有HBase特定配置选项的完整列表，请参阅<a href="https://docs.janusgraph.org/latest/config-ref.html">第15章，<em>配置参考</em></a>。</p>
+<p>配置HBase时，建议考虑以下HBase特定配置选项：</p>
+<p>·         <strong>storage.hbase.table</strong>：用于存储JanusGraph图的HBase表的名称。允许多个JanusGraph图在同一HBase集群中共存。</p>
+<p>有关更多HBase配置选项及其说明，请参阅<a href="http://hbase.apache.org/book/config.files.html">HBase配置文档</a>。通过<code>storage.hbase.ext</code>在JanusGraph配置中为相应的HBase配置选项添加前缀，它将在初始化时传递给HBase。例如，要为HBase使用znode / hbase-secure，请设置属性：<code>storage.hbase.ext.zookeeper.znode.parent=/hbase-secure</code>。前缀允许通过JanusGraph配置任意HBase配置选项。</p>
+<table>
+<thead>
+<tr>
+<th><strong>重要：</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HBase后端使用毫秒来表示时间戳。在JanusGraph 0.2.0及更早版本中，如果graph.timestamps未明确设置该属性，则默认为MICRO。在这种情况下，graph.timestamps必须将属性显式设置为MILLI。graph.timestamps在任何情况下都不要将该属性设置为其他值。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="193">19.3。全局图操作</h2>
+<p>HBus上的JanusGraph支持全局顶点和边缘迭代。但是，请注意所有这些顶点和/或边将被加载到内存中，这可能会导致<code>OutOfMemoryException</code>。使用<a href="https://docs.janusgraph.org/latest/hadoop-tp3.html">第37章，<em>JanusGraph<strong>和TinkerPop</strong>的Hadoop-Gremlin</em></a>地迭代大图中的所有顶点或边。</p>
+<h2 id="194hbase">19.4。管理HBase群集的提示和技巧</h2>
+<p>在<a href="http://wiki.apache.org/hadoop/Hbase/Shell">HBase shell</a>在主服务器上，可以用于获取集群的整体状态检查。</p>
+<pre><code>$HBASE_HOME/bin/hbase shell
+</code></pre>
+
+<p>从shell中，以下命令对于理解集群的状态通常是有用的。</p>
+<pre><code>status 'janusgraph'
+status 'simple'
+status 'detailed'
+</code></pre>
+
+<p>上面的命令可以识别某个区域服务器是否已经故障。如果是这样，就有可能<code>ssh</code>进入失败的区域服务器机器并执行以下操作：</p>
+<pre><code>sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh stop regionserver
+sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh start regionserver
+</code></pre>
+
+<p>使用<a href="http://code.google.com/p/parallel-ssh/">PSSH</a>可以简化此过程，因为不需要单独登录每台机器来运行命令。将区域服务器的IP地址放入<code>hosts.txt</code>文件，然后执行以下操作。</p>
+<pre><code>pssh -h host.txt sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh stop regionserver
+pssh -h host.txt sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh start regionserver
+</code></pre>
+
+<p>接下来，有时需要重新启动主服务器(例如，拒绝连接的异常)。为此，在主服务器上执行以下操作：</p>
+<pre><code>sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh stop master
+sudo -u hadoop $HBASE_HOME/bin/hbase-daemon.sh start master
+</code></pre>
+
+<p>最后，如果已经部署了HBASE集群，并且主服务器或区域服务器需要更多内存，只需编辑<code>$HBASE_HOME/conf/hbase-env.sh</code>相关机器上的文件<code>-Xmx -Xms</code>参数。编辑完后，如前面所述，停止/启动主服务器和/或区域服务器。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../goole_cloud_bigtable/" class="btn btn-neutral float-right" title="20.Google Cloud Bigtable">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../apache_cassandra/" class="btn btn-neutral" title="18.Apache Cassandra"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../apache_cassandra/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../goole_cloud_bigtable/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

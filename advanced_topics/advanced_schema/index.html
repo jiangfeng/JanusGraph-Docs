@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="FinSightRD">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>38.JanusGraph监控 - JanusGraph 翻译版(0.3.1)</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "38.JanusGraph\u76d1\u63a7";
+    var mkdocs_page_input_path = "advanced_topics/advanced_schema.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> JanusGraph 翻译版(0.3.1)</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">首页</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">I. 介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduction/the_benefits_of_janusgraph/">1.JanusGraph优势</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/architectural_overview/">2.架构总览</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduction/getting_started/">3.开始</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">II. Janusgraph基础知识</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration/">4.基本配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/schema_and_data_modeling/">5.数据实例和数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/gremlin_query_language/">6.Gremin查询语言</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_server/">7.JanusGraph服务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/deployment_scenarios/">8.部署方案</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuredgraphfactory/">9.配置图工厂</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/things_to_consider_in_a_multi_node_janusgraph_cluster/">10.多节点JanusGraph集群中需要考虑的事项</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/indexing_for_better_performance/">11.高性能索引</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transactions/">12.事务</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/janusgraph_cache/">13.JanusGraph缓存</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/transaction_log/">14.JanusGraph日志</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/configuration_reference/">15.配置手册</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/common_questions/">16.常见问题</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../janusgraph_basics/technical_limitations/">17.技术限制</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">III. 存储后端</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_cassandra/">18.Apache Cassandra</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/apache_hbase/">19.Apache Hbase</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/goole_cloud_bigtable/">20.Google Cloud Bigtable</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/oracle_berkeley_DB_java/">21.Oracle Berkeley DB Java Edition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/inmemory_storage_backend/">22.内存存储后端</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">IV. 后端索引</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../index_backends/search_predicates_and_data_types/">23.查询语法和数据类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/index_parameters_and_full-text_search/">24.索引参数和全文搜索</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/field_mapping/">25.字段映射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/direct_index_query/">26.直接索引查询</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/elasticsearch/">27.Elasticsearch</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_solr/">28.Apache Solr</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../index_backends/apache_lucene/">29.Apache_Lucene</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">V. 高级特性</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="./">30.Advanced Schema</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../eventually_consistent_storage_backends/">31.最终一致的存储后端</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../failure_recovery/">32.失败 & 重试</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../index_management/">33.索引管理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bulk_loading/">34.批量加载</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../graph_partitioning/">35.图分区</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datatype_and_attribute_serializer_configuration/">36.数据类型和属性序列化配置</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../janusgraph_with_tinkerPops_hadoop_gremlin/">37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">38.JanusGraph监控</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#30-schema">30 schema的高级特性</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#301-static-vertices">30.1 Static Vertices</a></li>
+        
+            <li><a class="toctree-l4" href="#302-edge-and-vertex-ttl">30.2  Edge and Vertex TTL</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../migrating_from_titan/">39.从Titan迁移</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">VI. JanusGraph内核</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/building_janusgraph/">40.JanusGraph数据模型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../storage_backend/janusgraph_data_model/">41.构建JanusGraph</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">JanusGraph 翻译版(0.3.1)</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>V. 高级特性 &raquo;</li>
+        
+      
+    
+    <li>38.JanusGraph监控</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="30-schema">30 schema的高级特性</h2>
+<h3 id="301-static-vertices">30.1 Static Vertices</h3>
+<p>顶点标签可以定义为静态，这意味着具有该标签的顶点不能在创建它们的事务之外被修改。  </p>
+<pre><code>mgmt = graph.openManagement()
+tweet = mgmt.makeVertexLabel('tweet').setStatic().make()
+mgmt.commit()
+</code></pre>
+
+<p>静态顶点标签是控制数据生命周期的一种方法，在将数据加载到图形中时很有用，图形创建后不应修改这些数据。</p>
+<h3 id="302-edge-and-vertex-ttl">30.2  Edge and Vertex TTL</h3>
+<p>边可顶点标签可以设置生命周期。标签在初始创建通过后，当TTL过期后带有此类标签的边和顶点会被自动移除。当仅仅是临时加载大量数据到图时TTL是非常有用的。定义TTL消除了手动清理的需要，并且非常有效地处理了删除的需求。例如，对于TTL事件的边（例如用户页面访问）在一段时间之后进行汇总或者仅仅不再需要进行分析或操作查询处理时，这将是有意义的。
+以下存储后端支持边和顶点TTL：
+- Cassandra
+- HBase</p>
+<h4 id="3021-edge-ttl">30.2.1  Edge TTL</h4>
+<p>边的生命周期基于每个边标签定义，这意味着该标签的所有边具有相同的生命周期。需要注意的是，后端必须支持单元级别生命周期。当前只有Cassandra和HBase支持：</p>
+<pre><code>mgmt = graph.openManagement()
+visits = mgmt.makeEdgeLabel('visits').make()
+mgmt.setTTL(visits, Duration.ofDays(7))
+mgmt.commit()
+</code></pre>
+
+<p>注意，修改边会重置边的生命周期。另外需要注意的是，边标签的生命周期可以改变，但更改需要一段时间传播到所有正在运行的JanusGraph实例，这就意味着，同一个标签可以临时使用两个不同的生命周期。</p>
+<h4 id="3022-property-ttl">30.2.2. Property TTL</h4>
+<p>属性的生命周期与边生命周期非常相似，并且基于每个属性键定义，这意味着该键的所有属性具有相同的生存时间。请注意，后端必须支持单元级别生命周期。目前只有Cassandra和HBase支持这一点:</p>
+<pre><code>mgmt = graph.openManagement()
+sensor = mgmt.makePropertyKey('sensor').cardinality(Cardinality.LIST).dataType(Double.class).make()
+mgmt.setTTL(sensor, Duration.ofDays(21))
+mgmt.commit()
+</code></pre>
+
+<p>与边的生命周期一样，修改现有属性会重置该属性的生命周期，并且修改属性键的可能不会立即生效。</p>
+<h4 id="3023-vertex-ttl">30.2.3. Vertex TTL</h4>
+<p>顶点的生命周期是基于每个顶点标签定义的，也就是说该标签的所有顶点具有相同的生存时间。配置的生命周期应用于其顶点，属性和所有的入射边，以确保从图中删除整个顶点。因此，必须先将顶点标签定义为静态，然后才能设置生命周期以排除任何可能是顶点生命周期失效的修改。顶点生命周期仅适用于静态顶点标签。要注意的是后端必须支持存储级别的生命周期。目前只有Cassandra和HBase支持。</p>
+<pre><code>mgmt = graph.openManagement()
+tweet = mgmt.makeVertexLabel('tweet').setStatic().make()
+mgmt.setTTL(tweet, Duration.ofHours(36))
+mgmt.commit()
+</code></pre>
+
+<p>请注意，可以修改顶点标签的生命周期，但此更改可能需要一些时间才能传播到所有正在运行的JanusGraph实例，这意味着两个不同的生命周期可能作用于同一标签。</p>
+<h4 id="303-multi-properties">30.3. Multi-Properties</h4>
+<p>正如第5章“架构和数据建模”中所讨论的，JanusGraph支持具有SET和LIST基数的属性键。因此，JanusGraph在单个顶点上支持具有相同键的多个属性。此外，JanusGraph对属性的处理类似于对边的处理，在属性上允许使用单值属性注释，如下面的示例所示：</p>
+<pre><code>mgmt = graph.openManagement()
+mgmt.makePropertyKey('name').dataType(String.class).cardinality(Cardinality.LIST).make()
+mgmt.commit()
+v = graph.addVertex()
+p1 = v.property('name', 'Dan LaRocque')
+p1.property('source', 'web')
+p2 = v.property('name', 'dalaro')
+p2.property('source', 'github')
+graph.tx().commit()
+v.properties('name')
+==&gt; Iterable over all name properties
+</code></pre>
+
+<p>这些特性在许多应用程序中都很有用，例如需要向属性附加出处信息(例如谁添加了属性、何时以及从何处添加?)。如第31章Eventually-Consistent Storage Backends（最终存储一致性）所述，支持跟高的基数属性和属性上的注释在高并发性，水平扩展的设计模式中也很有用。  </p>
+<p>属性支持以顶点为中心的索引和全局图索引，其方式与边支持的方式相同。有关定义边的索引信息，请参考11章“ Indexing for Better Performance”，并使用相应的API方法为属性定义相同的索引。</p>
+<h4 id="304-unidirected-edges">30.4. Unidirected Edges</h4>
+<p>单向边是只能沿输出方向遍历的边。单向边具有较低的存储占用，但他们支持的遍历类型有限。单向边在概念上类似于万维网的超链接，既输出顶点可以通过边遍历，但输入顶点不知道它的存在。</p>
+<pre><code>mgmt = graph.openManagement()
+mgmt.makeEdgeLabel('author').unidirected().make()
+mgmt.commit()
+</code></pre>
+
+<p>注意，当它们输入的顶点被删除时，单向边不会自动删除。用户必须通过明确的检查事物中的顶点的存在，以确保这些不一致不会在查询时出现或解决这些问题。请参见 31.2.2节 “Ghost Vertices”获取更多信息。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../migrating_from_titan/" class="btn btn-neutral float-right" title="39.从Titan迁移">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../janusgraph_with_tinkerPops_hadoop_gremlin/" class="btn btn-neutral" title="37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../janusgraph_with_tinkerPops_hadoop_gremlin/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../migrating_from_titan/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>
