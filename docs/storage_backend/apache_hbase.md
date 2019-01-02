@@ -6,11 +6,11 @@
 
 Apache hbase是一个开源的、分布式的、版本化的、非关系数据库。正如BigTable利用Google文件系统提供的分布式数据存储一样，ApacheHBASE在Hadoop和HDFS之上提供了类似BigTable的功能。
 
-## 19.1。HBase设置
+## 19.1. HBase设置
 
 以下部分概述了JanusGraph与Apache HBase协同使用的各种方式。
 
-### 19.1.1。本地服务器模式
+### 19.1.1. 本地服务器模式
 
 ![modes-local](https://docs.janusgraph.org/latest/images/modes-local.png)
 

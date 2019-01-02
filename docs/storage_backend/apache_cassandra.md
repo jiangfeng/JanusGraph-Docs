@@ -23,7 +23,7 @@ Cassandra有两个供客户使用的协议：CQL和Thrift。Thrift是最初的�
 
    注意：如果在Cassandra上启用了安全性，则用户必须具有CREATE permission on <all keyspaces>，否则必须由管理员提前创建密钥空间，包括所需的表或用户必须具有的密钥空间CREATE permission on <the configured keyspace>。包含所需表的create table文件位于conf/cassandra/cassandraTables.cql。请在执行之前定义键空间。
 
-**18.2。本地服务器模式**
+**18.2. 本地服务器模式**
 
 Cassandra可以作为JanusGraph和最终用户应用程序在同一本地主机上的独立数据库运行。在这个模型中，JanusGraph和Cassandra通过localhost套接字相互通信。在Cassandra上运行JanusGraph需要以下设置步骤：
 
@@ -175,10 +175,10 @@ scriptEngines：{
 
 ​	请注意，AMI需要几分钟来配置每个实例。当您通过SSH连接到实例时，将在成功配置时显示shell提示符。
 
-**18.9.5。启动JanusGraph实例**
+**18.9.5. 启动JanusGraph实例**
 ​	启动其他EC2实例以运行JanusGraph，它们在远程服务器模式或远程服务器模式下配置为Gremlin-Server，如上所述。您只需记下其中一个Cassandra集群实例的IP地址，并将其配置为主机名。要运行的特定EC2实例和特定配置取决于您的用例。
 
-**18.9.6。Amazon Linux AMI上的JanusGraph实例示例**
+**18.9.6. Amazon Linux AMI上的JanusGraph实例示例**
 
 ​	•在Cassandra集群的同一区域中启动Amazon Linux AMI。根据所需的资源量选择所需的EC2实例类型。使用默认配置选项，并选择与上一步中配置的Cassandra群集相同的密钥对和安全组。
 
@@ -199,7 +199,7 @@ storage.hostname = [IP-address-of-one-Cassandra-EC2-instance]`
 
 您已成功将此JanusGraph实例连接到Cassandra集群，并且可以开始在图表上运行。
 
-**18.9.7。从EC2外部连接到EC2中的Cassandra集群**
+**18.9.7. 从EC2外部连接到EC2中的Cassandra集群**
 
 在安全组中打开通常的Cassandra端口（9160,7000,7199）是不够的，因为Cassandra节点默认广播他们的ec2内部IP，而不是他们面向公众的IP。
 

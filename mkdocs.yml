@@ -4,12 +4,12 @@ site_author: FinSightRD
 
 nav:
 - 首页: index.md
-- I.介绍: 
+- I. 介绍: 
   - 1.JanusGraph优势: ./introduction/the_benefits_of_janusgraph.md
   - 2.架构总览: ./introduction/architectural_overview.md
   - 3.开始: ./introduction/getting_started.md
 
-- II.Janusgraph基础知识:
+- II. Janusgraph基础知识:
   - 4.基本配置: ./janusgraph_basics/configuration.md
   - 5.数据实例和数据模型: ./janusgraph_basics/schema_and_data_modeling.md
   - 6.Gremin查询语言: ./janusgraph_basics/gremlin_query_language.md
@@ -25,9 +25,12 @@ nav:
   - 16.常见问题: ./janusgraph_basics/common_questions.md
   - 17.技术限制: ./janusgraph_basics/technical_limitations.md
 
-- III.存储后端: 
+- III. 存储后端: 
   - 18.Apache Cassandra: ./storage_backend/apache_cassandra.md
   - 19.Apache Hbase: ./storage_backend/apache_hbase.md
+  - 20.Google Cloud Bigtable: ./storage_backend/goole_cloud_bigtable.md
+  - 21.Oracle Berkeley DB Java Edition: ./storage_backend/oracle_berkeley_DB_java.md
+  - 22.内存存储后端: ./storage_backend/inmemory_storage_backend.md
 
 - IV. 后端索引:
   - 23.查询语法和数据类型: ./index_backends/search_predicates_and_data_types.md
@@ -49,5 +52,9 @@ nav:
   - 37.JanusGraph基于TinkerPop's Hadoop-Gremlin使用: ./advanced_topics/janusgraph_with_tinkerPops_hadoop_gremlin.md
   - 38.JanusGraph监控: ./advanced_topics/advanced_schema.md
   - 39.从Titan迁移: ./advanced_topics/migrating_from_titan.md
+
+- VI. JanusGraph内核:
+  - 40.JanusGraph数据模型: ./storage_backend/building_janusgraph.md
+  - 41.构建JanusGraph: ./storage_backend/janusgraph_data_model.md
 
 theme: readthedocs

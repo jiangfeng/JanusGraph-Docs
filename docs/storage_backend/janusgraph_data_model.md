@@ -8,7 +8,7 @@ JanusGraph以[邻接列表格式](http://en.wikipedia.org/wiki/Adjacency_list)�
 
 JanusGraph将图形的邻接列表表示[存储](https://docs.janusgraph.org/latest/storage-backends.html)在支持Bigtable数据模型的任何[存储后端](https://docs.janusgraph.org/latest/storage-backends.html)中
 
-## 40.1。Bigtable数据模型
+## 40.1. Bigtable数据模型
 
 ![bigtablemodel](https://docs.janusgraph.org/latest/images/bigtablemodel.png)
 
@@ -18,7 +18,7 @@ JanusGraph对Bigtable数据模型还有一个额外要求：单元格必须按�
 
 此外，特定的Bigtable实现可以使行按其键的顺序排序。JanusGraph可以利用这样的键序来有效地划分图形，从而为非常大的图形提供更好的加载和遍历性能。但是，这不是必需的。
 
-## 40.2。JanusGraph数据布局
+## 40.2. JanusGraph数据布局
 
 ![storagelayout](https://docs.janusgraph.org/latest/images/storagelayout.png)
 
@@ -26,7 +26,7 @@ JanusGraph将每个邻接列表作为一行存储在底层存储后端中。（6
 
 如果存储后端支持键顺序，则邻接列表将按顶点id排序，并且JanusGraph可以分配顶点id，以便图形被有效地分区。分配ID使得经常共同访问的顶点具有小的绝对差异的id。
 
-## 40.3。个别边缘布局
+## 40.3. 个别边缘布局
 
 ![relationlayout](https://docs.janusgraph.org/latest/images/relationlayout.png)
 
