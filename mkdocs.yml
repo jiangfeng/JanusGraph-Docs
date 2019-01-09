@@ -1,4 +1,4 @@
-site_name: JanusGraph 翻译版(0.3.1)
+﻿site_name: JanusGraph 翻译版(0.3.1)
 site_author: FinSightRD
 
 
@@ -56,5 +56,18 @@ nav:
 - VI. JanusGraph内核:
   - 40.JanusGraph数据模型: ./storage_backend/building_janusgraph.md
   - 41.构建JanusGraph: ./storage_backend/janusgraph_data_model.md
+
+- VII. JanusGraph开发流程:
+  - 42.开发决策: ./janusgraph_development_process/development_decisions.md
+  - 43.分支: ./janusgraph_development_process/branching.md
+  - 44.pull请求: ./janusgraph_development_process/pull_requests.md
+  - 45.发布策略: ./janusgraph_development_process/release_policy.md
+
+- VIII. 附录:
+  - A.API文档(Java): ./appendices/api_documentation (javadoc).md
+  - B.版本兼容性: ./appendices/version_compatibility.md
+  - C.发行说明: ./appendices/release_notes.md
+  - D.升级说明: ./appendices/upgrade_instructions.md
+  - D.其它文件版本: ./appendices/other_documentation_versions.md
 
 theme: readthedocs
